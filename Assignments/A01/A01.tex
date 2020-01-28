@@ -19,6 +19,25 @@
 
 \pagebreak
 
+\section*{Problem 1}
+	\emph{Suppose a family contains two children of different ages, and we are interested in the gender of these children. Let $F$ denote a female child, and $M$ denote male child, such that the ordered pair $FM$ denotes an older female child and a younger male child without loss of generality. In the set $S$, we thus have: $$ S = \{ FF, \, FM, \, MF, \, MM \}$$ Let $A$ denote the subset of possibilities containing no males, $B$ denote the subset containing two males, and $C$ the subset containing at least one male. List the elements of $A, B, C, A \cap B, A \cup B, A \cap C, A \cup C, B \cap C, B \cup C,$ and $C \cap \bar{B}$. }
+	
+	\begin{sol}
+		\vspace{-1cm}
+		\begin{align*}
+			A &= \{ FF \} \\
+			B &= \{ MM \} \\
+			\bar{B} &= \{ FF, \, FM, \, MF\} \\
+			C &= \{ FM, \, MF, \, MM \} \\
+			A\cap B &= \{  \} = \varnothing \\
+			A \cup B &= \{ FF, \, MM\} \\
+			A \cap C &= \{ \} = \varnothing \\
+			A \cup C &= \{ FF, \, FM, \, MF, \, MM\} = S \\
+			B \cap C &= \{ MM \} = B \\
+			B \cup C &= \{ FM, \, MF, \, MM \} = C \\
+			C \cap \bar{B} &= \{ FM, \, MF\}
+		\end{align*}
+	\end{sol}
 \end{document}  
 
 	
