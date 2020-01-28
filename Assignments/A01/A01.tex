@@ -38,6 +38,41 @@
 			C \cap \bar{B} &= \{ FM, \, MF\}
 		\end{align*}
 	\end{sol}
+\pagebreak
+\section*{Problem 2}
+	\emph{Suppose two dice are tossed, and the numbers on he upper faces are observed. Let $S$ denote the set of all possible pairs that can be observed. [These pairs can be listed, for example, by letting $(2,3)$ denote that a 2 was observed on the first die, and a 3 on the second.]
+	\begin{enumerate}[$\quad$a)]
+		\item Define the following subsets of $S$: 
+		\vspace{-0.5cm}
+			\begin{align*}
+				A: &\text{The number on the second die is even.}\\
+				B: &\text{The sum of the two numbers is even. }\\
+				C: &\text{At least one number in the pair is odd. }
+			\end{align*}
+		\item List the points in $A, \bar{C}, A \cap B, A \cap \bar{B}, \bar{A} \cup {B},$ and $\bar{A} \cap C$
+	\end{enumerate}
+	}
+	\begin{sol}
+		\vspace{-0.6cm}
+		\begin{enumerate}[$\quad$a)]
+			\item We begin by defining the a particular subset of the natural numbers $\N_k$. Let $k$ be a positive integer such that: $$ \N_k = \{1, 2, \dots, k\} $$
+			The particular subset $N_k$ has the following multiplicative property for $\alpha \in \N$:
+			$$ \N_{\alpha (k) } = \{ \alpha (1), \alpha(2), \dots, \alpha (k) \}$$
+			We can thus define the set $S = \{ (a, b): a, b \in \N_6\}$ where $a$ denotes the result of the first die, and $b$ denotes the result of the second die. Now, we can use the same notation to define the required subsets:
+			\begin{align*}
+				A &= \{ (a, b) : a \in \N_6, \,  b \in \N_{2(3)} \}\\
+				B &= \{ (a, b) : a+b \in \N_{2(6)} \} \\
+				C &= \{ (a, b) : a \notin \N_{2(3)}\quad \nabla \quad  b \notin \N_{2(3)}   \}
+			\end{align*}
+			Note the use of $\nabla$ (XOR), which is the exclusive $\lor$ (OR).
+		\pagebreak
+			\item 
+			\begin{align*}
+				A &= \{ (1, 2), (1, 4), (1, 6), (2, 2), (2, 4), (2, 6), (3, 2), (3, 4), (3, 6), (4, 2), (4, 4), (4, 6), \\
+				&\quad\quad\quad\quad\quad\quad (5, 2), (5, 4), (5, 6), (6, 2), (6, 4), (6, 6) \}
+			\end{align*}
+		\end{enumerate}
+	\end{sol}
 \end{document}  
 
 	
