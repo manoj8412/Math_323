@@ -160,8 +160,39 @@
 	\emph{Extend Theorem 5, proved in class, to three events, A, B, and C, by finding an expression for $P(A \cup B \cup C)$ in terms of the probabilities of $A, B$, and $C$, of their pair-wise intersections, and the intersection of all three events. (Hint: Begin by considering $A \cup B$ as a single event). }
 \pagebreak
 \section*{Problem 6}
-	\emph{Here is a subtle question. Criticize the reasoning of Example 2.3 p37 given by Wackerly, Mendenhall, and Scheaffer. They argue that just because the coin is balanced, each outcome (the result of three tosses) must have probability 1/8. Note that a coin is balanced if $P(H) = P(T) = 1/2$ at each toss. Is is enough to criticize the reasoning by considering just a two-toss experiment, for which WMS would (incorrectly) argue that the probability of each pair of outcome is automatically 1/4, from the fairness of the coin alone. This mistake is made in many introductory statistics books. (This is not complicated, but you will need to look at your notes carefully before submitting.)
+	\emph{Here is a subtle question. Criticize the reasoning of Example 2.3 p37 given by Wackerly, Mendenhall, and Scheaffer. They argue that just because the coin is balanced, each outcome (the result of three tosses) must have probability $1/8$. Note that a coin is balanced if $P(H) = P(T) = 1/2$ at each toss. Is is enough to criticize the reasoning by considering just a two-toss experiment, for which WMS would (incorrectly) argue that the probability of each pair of outcome is automatically $1/4$, from the fairness of the coin alone. This mistake is made in many introductory statistics books. (This is not complicated, but you will need to look at your notes carefully before submitting.)
 	}
+\pagebreak
+\section*{Problem 7}
+	\emph{We previously considered a situation where cars entering an intersection each could turn right, turn left, or go straight. An experiment consists of observing two vehicles moving through the intersection. 
+	\begin{enumerate}[$\quad$a)]
+		\item How many sample points are there in the sample space?
+		\item Assuming that all sample points are equally likely, what is the probability that at least one vehicle turns left?
+		\item Again assuming all sample points are equally likely, what is the probability that at most one vehicle turns?
+	\end{enumerate}
+	}	
+	\begin{sol}
+		\begin{enumerate}[$\quad$a)]
+			\item There are 2 vehicles, and each car has 3 possible directions in which to turn. Thus, the total sample points can be calculated by:
+			$$ (3 \text{ directions})^{(2 \text{ vehicles})} = 9 \text{ sample points}$$
+			Let us list these 9 points through pairs $(A, B)$ where $A$ denotes the direction of the first car and $B$ the direction of the second. We have:
+			\begin{multicols}{3}
+				$(Left, \, Left)$ \\
+				$(Left, \, Straight)$ \\
+				$(Left, \, Right)$ \\
+				$(Straight,\, Left)$ \\
+				$(Straight,\, Straight)$ \\
+				$(Straight,\, Right)$ \\
+				$(Right,\, Left)$ \\
+				$(Right,\, Straight)$ \\
+				$(Right,\, Right)$
+			\end{multicols}
+			\item We can see above that out of all 9 possibilities, only 5 of them have at least one vehicle turning left. Therefore, the probability that at least one vehicle turns left is $5/9$. We can also see that the amount of possibilities where no vehicle turns left at all is $4/9$, and so $1 - 4/9 = 5/9$.
+			
+			\item We again have a total 9 possibilities, only that this time we consider the cases where both of the vehicles turn either left or right. Thus, we can see that there are only 4 cases where this occurs. As we are looking for the number of possibilities where at most one car turns, we calculate this again by subtracting the number of cases where both vehicles turn from all possibilities: $1- 4/9 = 5/9$. If we count the number of possibilities that include a straight direction (of which at most one car turns), we see that there are 5 possibilities, confirming the result.
+		\end{enumerate}
+		
+	\end{sol}
 \end{document}  
 
 	
