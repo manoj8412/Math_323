@@ -33,6 +33,35 @@
 		The set of natural numbers $\N = \{ 1, 2, 3, \dots\}$, which is both infinite and countable.
 	\end{exmp}
 	\begin{exmp}
-		
+		The set of all McGill students.
 	\end{exmp}
+	\begin{defn}
+		Let $S$ be a set. A \textbf{subset} is another set $A$ such that every element of $B$ is in $A$ as well:
+		$$ A = \{ x: x \in S\} \quad \text{ or } \quad x \in A \implies x \in S$$
+	\end{defn}
+	\begin{rem}
+		The empty set is denoted $\varnothing = \{\}$
+	\end{rem}
+	\begin{defn}
+		An \textbf{intersection} between the sets A and B is defined as
+		$$ A \cap B = x \in A \quad \text{and}\quad x \in B$$
+	\end{defn}
+	\begin{defn}
+		A \textbf{union} between the sets A and B is defined as
+		$$ A \cup B = x \in A \quad \text{or}\quad x \in B$$
+	\end{defn}
+	\begin{defn}
+		Let $X$ be a universal set with a subset $A$. Then the complement of $A$ with respect to $X$ is
+		$$ A^c = X \setminus A = \{ x: x \in X \quad \text{and} \quad x \notin A \}$$
+	\end{defn}
+	\begin{exmp}
+		$\mathcal{P} (B) = \{ A: A \subseteq B \}$ (all subsets of $B$)
+		
+		Let $B = \{1,2,3\}$, then
+		$$ \mathcal{P}(B) = \bigg\{ \underbrace{ \{\}, \{1,2,3\}}_{\text{trivial subsets}}, \underbrace{\overbrace{\{1\}, \{2\}, \{3\},}^{\text{singletons}} \overbrace{\{1,2\}, \{1,3\}, \{2,3\}}^{\text{doubles}}}_{\text{proper subsets}} \bigg\}$$
+	\end{exmp}
+	\begin{defn}
+		Two sets $A$ and $B$ are denoted as \textbf{disjoint} whenever they share no elements, i.e. they have nothing in common:
+		$$ A \cap B = \varnothing$$
+	\end{defn}
 \end{document}      
