@@ -158,10 +158,49 @@
 \pagebreak
 \section*{Problem 5}
 	\emph{Extend Theorem 5, proved in class, to three events, A, B, and C, by finding an expression for $P(A \cup B \cup C)$ in terms of the probabilities of $A, B$, and $C$, of their pair-wise intersections, and the intersection of all three events. (Hint: Begin by considering $A \cup B$ as a single event). }
+	\begin{proof}
+		Recall that $P(A \cup B) = P(A) + P(B) - P(A \cap B)$. Thus, we may extend this to three sets by:
+		\begin{align*}
+			P(A \cup B \cup C) &= P\big( (A \cup B) \cup C \big) \\
+			&= P(A\cup B) + P(C) - P \big( (A \cup B) \cap C \big)\\
+			&= P(A) + P(B) - P(A \cap B) + P(C) - P \big( (A \cap C) \cup (B \cap C) \big) \\
+			&= P(A) + P(B) + P(C) - P(A\cap B) - \big( P(A \cap C) + P(B \cap C) - P\big((A \cap C) \cap (B \cap C)\big) \big)  \\
+			&= P(A) + P(B) + P(C) - P(A \cap B) - P(A \cap C) - P(B \cap C) + P (A \cap B \cap C)
+		\end{align*}
+	\end{proof}
 \pagebreak
 \section*{Problem 6}
 	\emph{Here is a subtle question. Criticize the reasoning of Example 2.3 p37 given by Wackerly, Mendenhall, and Scheaffer. They argue that just because the coin is balanced, each outcome (the result of three tosses) must have probability $1/8$. Note that a coin is balanced if $P(H) = P(T) = 1/2$ at each toss. Is is enough to criticize the reasoning by considering just a two-toss experiment, for which WMS would (incorrectly) argue that the probability of each pair of outcome is automatically $1/4$, from the fairness of the coin alone. This mistake is made in many introductory statistics books. (This is not complicated, but you will need to look at your notes carefully before submitting.)
 	}
+	\begin{sol}
+		Recall that two events A and B are said to be independent if $P(B \mid A) = P(B)$ or $P(A \mid B) = P(A)$ or $P(A \cap B) = P(A)P(B)$. Thus, consider the case of a balanced (or fair) coin being tossed twice, where $P(H) = P(T) = 1/2$. We define the following events:
+		\begin{align*}
+			A &= \text{ First toss is Heads (HH, HT)} \\
+			B &= \text{ Second toss is Tails (HT, TT)} \\
+			C &= \text{ There is at least one Heads (HH, HT, TH)} 
+		\end{align*}
+		Therefore, we have the following probabilities:
+		\begin{multicols}{2}
+			\begin{align*}
+			P(A) &= 1/2 \\
+			P(B) &= 1/2 \\
+			P(C) &= 1/2 \\
+			P(A \cap B) &= 1/4 \\
+			P(A \cap C) &= 1/2 \\
+			P(B \cap C) &= 1/4 \\
+		\end{align*}
+		\begin{align*}
+			P (A \mid B) &= \frac{1/4}{1/2} = 1/2\\
+			P (B \mid A) &= \frac{1/4}{1/2} = 1/2\\
+			P (A \mid C) &= \frac{1/2}{1/2} = 1\\
+			P (C \mid A) &= \frac{1/2}{1/2} = 1\\
+			P (B \mid C) &= \frac{1/4}{1/2} = 1/2\\
+			P (C \mid B) &= \frac{1/4}{1/2} = 1/2
+		\end{align*}
+		\end{multicols}
+		
+		We can therefore observe that $A$ and $B$ \textbf{are independent} as $P(A \mid B) = 1/2 = P(A)$, $A$ and $C$ \textbf{are not independent} as $P(C \mid A) = 1 \neq 1/2 = P(C)$ and $P(A \cap C) = 1/2 \neq 1/4 = P(A)P(C)$, and finally $B$ and $C$ \textbf{are independent} as $P(B \cap C) = 1/4 = P(B)P(C)$. The independence of the events in question must therefore be considered, as well as the fairness of the coin before assuming that the probability of each outcome is 1/4 for a two-toss coin experiment. This can thus be expanded upon the three-toss experiment in the book.
+	\end{sol}
 \pagebreak
 \section*{Problem 7}
 	\emph{We previously considered a situation where cars entering an intersection each could turn right, turn left, or go straight. An experiment consists of observing two vehicles moving through the intersection. 
@@ -200,6 +239,11 @@
 		\item If four of the six systems are actually defective find the probability that at least one of the two systems tested will be defective.
 	\end{enumerate}
 	}
+	\begin{sol}
+		\begin{enumerate}[$\quad$a)]
+			\item
+		\end{enumerate}
+	\end{sol}
 \end{document}  
 
 	
