@@ -36,8 +36,8 @@
 		The set of all McGill students.
 	\end{exmp}
 	\begin{defn}
-		Let $S$ be a set. A \textbf{subset} is another set $A$ such that every element of $B$ is in $A$ as well:
-		$$ A = \{ x: x \in S\} \quad \text{ or } \quad x \in A \implies x \in S$$
+		Let $X$ be a set. A \textbf{subset} is another set $A$ such that every element of $A$ is in $X$ as well:
+		$$ A = \{ x: x \in X\} \quad \text{ or } \quad x \in A \implies x \in X$$
 	\end{defn}
 	\begin{rem}
 		The empty set is denoted $\varnothing = \{\}$
@@ -62,6 +62,124 @@
 	\end{exmp}
 	\begin{defn}
 		Two sets $A$ and $B$ are denoted as \textbf{disjoint} whenever they share no elements, i.e. they have nothing in common:
-		$$ A \cap B = \varnothing$$
+		$$ A \cap B = \varnothing$$ 
 	\end{defn}
+	\begin{exmp}
+		Let $\Omega = \N = \{ 0,1,2,3,4,\dots\}$ and $A \subseteq N = \{ n \in \N: n \text{ is even}\}$. Then,
+		$$ A^c = \{ n \in \N : n \text{ is odd}\}$$
+	\end{exmp}
+\pagebreak
+\subsubsection{Properties of Sets}
+	\begin{multicols}{2}
+		\begin{itemize}
+			\item $A \cap \varnothing = \varnothing$
+			\item $A \cup \varnothing = A$
+			\item $A \cup B = B \cup A$
+			\item $A \cap B = B \cap A$
+			\item $(A\cap B)\cap C = A \cap (B \cap C)$
+			\item $(A \cup B) \cup C = A \cup (B \cup C)$
+			\item $(A \cap B)^c = A^c \cup B^c$
+			\item $(A \cup B)^c = A^c \cap B^c$
+		\end{itemize}
+	\end{multicols}
+	\begin{exe}
+		Prove that
+		\begin{enumerate}[$\quad \quad$a)]
+			\item $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
+			\item $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
+		\end{enumerate}
+	\end{exe}
+	\begin{note}
+		Consider $A \setminus B = \{ x\in A: x \notin B \}$. Then we define the \textbf{exclusive or} as
+		$$ A \setminus B \cup B \setminus A = A \triangle B$$
+	\end{note}
+\pagebreak
+\section{Probability}
+	Probability is the branch of applied mathematics that deals with random events, which are non-deterministic in nature, unlike calculus for instance, which deals with deterministic events.
+	\begin{exmp}
+		Toss a coin. We won't know the outcome of the toss, but we do know that the outcome will be either \emph{heads} or \emph{tails}.
+	\end{exmp} 
+	\begin{exmp}
+		Roll a die. We now have several outcomes, depending on the number of faces on the die.
+	\end{exmp}
+	\begin{defn}
+		Given a random experiment, the set of all possible outcomes is denoted $\Omega$, and is called the \textbf{sample space}.
+	\end{defn}
+	\begin{exmp} $\quad$ \\
+		\vspace{-0.5cm}
+		\begin{itemize}
+			\item The sample space for a coin toss is $\Omega = \{ H, T \}$
+			\item The sample space for a rolled 6-face die is $\Omega = \{1,2,3,4,5,6\}$
+			\item The sample space for a coin toss where we require heads once is $\Omega = \{ H, TH, TTH, \dots \}$
+		\end{itemize}
+	\end{exmp}
+	\begin{defn}
+		Let $\Omega$ denote the set of all possible outcomes of a random experiment.
+		\begin{enumerate}[$\quad\,\,${2.2}.1.]
+			\item An \textbf{elementary event} is a subset of $\Omega$ with a singular element (i.e. one single outcome) and is also an element of $\mathcal{P}(\Omega)$.
+			\item A \textbf{compound event} is any subset of $\Omega$ (including the elementary events).
+			\item An \textbf{event} is any element of $\Omega$.
+			\item $\varnothing$ denotes \textbf{impossible events}.
+			\item A \textbf{complimentary event} given an event $A$ is denoted $A^c$.
+			\item Given 2 events $A$ and $B$, where $A \cap B = \varnothing$, we denote them as \textbf{disjoint events}.
+		\end{enumerate}
+	\end{defn}
+	\begin{defn}
+		Let $\Omega$ be the sample space attached to a random experiment. A \textbf{probability} is a function $P$ such that
+		$$ P: \mathcal{P}(\Omega) \to [0,1]$$
+	\end{defn}
+	Note that $P(\Omega)=1$. Given a sequence $A_1, \dots, A_n, \dots$, of pairwise disjoint events ($A_i \cap A_j = \varnothing \quad \forall i \neq j$), we have that 
+	$$ P \left(  \bigcup_{i =1} A_i\right) = \sum_{i =1} P (A_i)$$
+	\begin{rem}
+		In general, if $\Omega$ is countable, then it is enough to define $P$ on the elementary event, as every other event can be written as a union.
+	\end{rem}
+	\begin{exmp}
+		Toss a coin such that $\Omega = \{ H, T \}$. A probability on $\Omega$ is completely given by $p \in [0,1]$, and the assignment of $P(\{H\}) = p$, and $P(\{T\}) = 1-p$.
+	\end{exmp}
+	\begin{rem}
+		If $p=1/2$ in the previous example, then $P(\{H\}) = P(\{T\}) = 1/2$, implying that \emph{the coin is fair/balanced}.
+	\end{rem}
+	\begin{exmp}
+		Throw a die such that $\Omega = \{ \omega_1, \omega_2, \omega_3, \omega_4, \omega_5, \omega_6 \}$. A probability on $\Omega$ is given by 6 non-negative integers $p_i$ where $i=1,2,3,4,5,6$, such that
+		$$ p_i = P(\{w_i\}) \geq 0$$
+		And so
+		$$ \sum_{i=1}^6 p_i = 1$$
+		Therefore, if we consider the die to be fair, we have $p_i = 1/6 \quad \forall i \in \{ 1,2,3,4,5,6 \}$. \\ Let $A = \{ \omega_1, \omega_3\}$ Then
+		\begin{align*}
+		 A &= \{ \omega_1\} \cup \{ \omega_3 \} \implies P(A) \\ 
+		 &= P(\{ \omega_1 \}) + P(\{ \omega_3 \}) \\
+		 &= 1/6 + 1/6 \\
+		 &= 1/3
+		\end{align*} 
+	\end{exmp}
+	\begin{exe}
+		Consider a die such that the probability $P(\{\omega_i\})$ is proportional to $k$ such that
+		$$ P \big( \{\omega_i\} \big) = ck$$
+		Therefore:
+		\begin{align*}
+			1 &= \sum_{k=1}^6 P(\{\omega_k\}) \\
+			&= \sum_{k=1}^6 ck \\
+			&= c\sum_{k=1}^6 k \\
+			&= c\frac{n(n+1)}{2}\bigg|_{n=6} \\
+			&= c \frac{6 \times 7}{2} \\
+			&= 21c\\
+		\intertext{ }
+			\therefore c &= \frac{1}{21}
+		\end{align*}
+		
+		What would be the probability of an even number?\\
+		Let $A = \{ \omega_2, \omega_4, \omega_6 \}$, and so
+		\begin{align*}
+			P(A) &= P(\{\omega_2\}) + P(\{\omega_4\}) + P(\{\omega_6\})  \\
+			&= \frac{2+4+6}{21} \\
+			&= \frac{12}{21}
+		\end{align*}
+		
+		What would be the probability of an odd number?\\
+		Simple:
+		\begin{align*}
+			P(B) &= 1- P(A) \\
+			&= \frac{9}{12}
+		\end{align*}
+	\end{exe}
 \end{document}      
