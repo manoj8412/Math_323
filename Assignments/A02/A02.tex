@@ -81,6 +81,38 @@
 			$$ P(B \mid A) = \frac{P(A \cap B)}{P(A)} = \frac{0.9}{0.999} = \boxed{\frac{100}{111}}$$
 		\end{enumerate}
 	\end{sol}
+
+\pagebreak
+
+\section*{Problem 5: WMS 2.101}
+	\emph{Articles coming through an inspection line are visually inspected by two successive inspectors. When a defective article comes through the inspection line, the probability that it gets by the first inspector is 0.1, then the second inspector will "miss" 5 out of 10 defective items that get past the first inspector. What is the probability that a defective article gets past both inspectors?}
+	
+	\begin{sol}
+		Let us denote $A$ as the event where the defective article passes through the first inspector, and let $B$ denote the event where it passes through the second inspector. We know that $P(A) = 0.1$ and $P(B \mid A) = \frac{5}{10} = 0.5$, so the probability that a defective item gets past both inspectors is given by:
+		$$ P(A \cap B) = P(B \mid A) \times P(A) = 0.5 \times 0.1 = \boxed{0.05} $$
+	\end{sol}
+
+\pagebreak
+
+\section*{Problem 6: WMS 2.102}
+	\emph{Diseases I and II are prevalent among people in a certain population. It is assumed that 10\% of the population will contract disease I within their lifetime, while 15\% will eventually contract disease II. Only 3\% however will contract both disease I and II.
+	\begin{enumerate}[$\quad\quad$a)]
+		\item Find the probability that a randomly chosen person from this population will contract at least one disease.
+		\item Find the conditional probability that a randomly chosen person from this population will contract both diseases, given that he or she has contracted at least one disease before.
+	\end{enumerate}}
+	\begin{sol}
+		\begin{enumerate}[$\quad\quad$ a)]
+			\item Let us denote $A$ as the event where a person contracts disease I, and event $B$ as the event where a person contracts disease II. We know that $P(A) = 0.1$, $P(B) = 0.15$, and $P(A \cap B) = 0.03$. If we want to find the probability that a randomly chosen person from this population will contract at least one disease, we have:
+			\begin{align*}
+				P(A \cup B) &= P(A) + P(B) - P(A \cap B) \\
+				&= 0.1 + 0.15 - 0.03 \\
+				&= \boxed{0.22}
+			\end{align*}
+		
+			\item If we want the conditional probability that a randomly chosen person from the population will contract both diseases given that she has contracted at least one disease before, we have:
+			$$ P\big( (A \cap B) | (A \cup B) \big)  = \frac{P(A \cap B)}{P(A \cup B)} = \frac{0.03}{0.22} = \boxed{\frac{3}{22}}$$
+		\end{enumerate}
+	\end{sol}
 \end{document}  
 
 	
