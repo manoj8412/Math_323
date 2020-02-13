@@ -111,8 +111,57 @@
 		
 			\item If we want the conditional probability that a randomly chosen person from the population will contract both diseases given that she has contracted at least one disease before, we have:
 			$$ P\big( (A \cap B) | (A \cup B) \big)  = \frac{P(A \cap B)}{P(A \cup B)} = \frac{0.03}{0.22} = \boxed{\frac{3}{22}}$$
+			
 		\end{enumerate}
 	\end{sol}
+
+\pagebreak
+
+\section*{Problem 7: WMS 2.104}
+	\emph{If $A$ and $B$ are two events, prove that $P(A \cap B) \geq 1 - P(A^C)  - P(B^C) $ \\ (Note: this is a simplified version of the \textbf{Bonferroni inequality})}
+	
+	\begin{proof}
+		We know that $P (A \cap B) = 1 - P (A \cap B)^C = 1 - P (A^C \cup B^C)$. We also know that $P(A^C \cup B^C) \leq P(A^C) + P(B^C)$. Thus, 
+		$$ P(A \cap B) \geq 1 - (P(A^C) + P(B^C) ) = 1- P(A^C) - P(B^C) $$
+	\end{proof}
+
+\pagebreak
+
+\section*{Problem 8: WMS 2.118}
+	\emph{An accident victim will die in the next 10 minutes unless he receives a blood transfusion of type A, Rh-positive blood from a single donor. The hospital requires 2 minutes to test the type of a potential donor's blood and then 2 minutes to complete the transfer of blood. Many donors with untested blood are available, and 40\% of these untested donors have type A, Rh-positive blood. What is the probability that the accident victim will be saved if only one blood-testing kit is available? Assume that the type-testing kit is reusable but can be used with only one donor at a time. }
+	
+	\begin{sol}
+		For the accident victim to live, we must find a proper donor within at leats 8 minutes, such that the remaining 2 minutes are used to transfer the blood to the victim. As the blood testing machine takes 2 minutes to test each possible donor, a maximum of 4 attempts is possible in 8 minutes. A second attempt implies a failed first attempt, a third attempt implies failed second and first attempts, and so on. Therefore, we can deduce the probability that the victim is kept alive by letting $A$ be the event where the correct donor is found. Now, the probability $P(S)$ that the accident victim will be saved if only one blood-testing kit is available is given by: 
+		\begin{align*}
+			P(S) &= P(A) + P(A^C)P(A) + P(A^C)P(A^C)P(A) + P(A^C)P(A^C)P(A^C)P(A)
+		\intertext{We assume that each attempt is independent, such that:}
+			P(S) &= 0.4 + (0.6)(0.4) + (0.6)^2 (0.4) + (0.6)^3 (0.4) \\
+			&= \boxed{\frac{544}{625}}
+		\end{align*}
+	\end{sol}
+
+\pagebreak
+
+\section*{Problem 9: WMS 2.120}
+	\emph{Suppose that two defective refrigerators have been included in a shipment of six refrigerators. The buyer begins to test the six refrigerators one at a time.
+	\begin{enumerate}[$\quad\quad$a)]
+		\item What is the probability that the last defective refrigerator is found on the fourth test? 
+		\item What is the probability that no more than four refrigerators need to be tested to locate both of the defective refigerators?
+		\item When given that exactly one of the two defective refrigerators has been located in the first two test, what is the probability that the remaining defective refrigerator is found in the third or fourth test?
+	\end{enumerate}
+	}
+	
+	\begin{sol}
+		\begin{enumerate}[$\quad\quad$a)]
+			\item We denote $A$ as the event where a good refrigerator is found, and $B$ as the event where a defective refrigerator is found. We assume that the last defective refrigerator is found on the $4^{th}$ test, then we know that the first defective refrigerator was found on one of the first 3 tests. Hence, we have the following set of possibilities:
+			
+			$$ \{ BAAB, ABAB, AABB\} $$	
+			We can calculate the probability that the last defective refrigerator is found on the fourth test by:
+			
+			$$ P \big( \{ BAAB, ABAB, AABB\}  \big) = \frac{2}{6} \cdot \frac45 \cdot\frac34 \cdot \frac13 + \frac46 \cdot\frac25 \cdot\frac34 \cdot\frac13 + \frac46\cdot \frac35 \cdot\frac24 \cdot\frac13 = \frac15$$
+		\end{enumerate}
+	\end{sol}
+	
 \end{document}  
 
 	
