@@ -21,6 +21,17 @@
 
 \section*{Problem 1}
 	\emph{A chest has 3 drawers. Each drawer has 2 boxes. The boxes of one drawer contain a silver coin in each respectively. The boxes in one drawer both contain a silver coin respectively, the boxes in another drawer both contain a gold coin respectively, and in the last drawer one box contain s a silver coin and the other a gold coin. A drawer is then selected at random, and then a box is also selected at random such that it is then opened. The coin is found to be silver. What is the probability that the coin in the other box is gold?}
+	\begin{sol}
+		We can find the answer by using \textbf{Baye's Rule}. Recall that Baye's Rule states that
+		$$ P(A \mid B) = \frac{P(A \cap B)}{P(B)}$$
+		Thus, we define the event $A$ when the coin in the opposing box is gold, and $B$ when the coin found is silver. Thus, we may then define $C$ when the third drawer is drawn with a silver coin, $D$ when the second drawer is drawn with a silver coin, and $E$ when the first drawer is drawn with a silver coin.
+		\begin{align*}
+			P(A \mid B) &= \frac{P( A \cap B)}{P(B)} \\
+			&= \frac{P(C)}{P(C) + P(D) + P(E)} \\
+			&= \frac{\left( \frac13 \cdot \frac12 \right)}{\left( \frac13 \cdot 1 \right) + \left(\frac13 \cdot 0\right) + \left( \frac13 \cdot \frac12 \right)} \\
+			&= \boxed{\frac13}
+		\end{align*}  
+	\end{sol}
 
 \pagebreak
 
@@ -158,10 +169,113 @@
 			$$ \{ BAAB, ABAB, AABB\} $$	
 			We can calculate the probability that the last defective refrigerator is found on the fourth test by:
 			
-			$$ P \big( \{ BAAB, ABAB, AABB\}  \big) = \frac{2}{6} \cdot \frac45 \cdot\frac34 \cdot \frac13 + \frac46 \cdot\frac25 \cdot\frac34 \cdot\frac13 + \frac46\cdot \frac35 \cdot\frac24 \cdot\frac13 = \frac15$$
+			$$ P \big( \{ BAAB, ABAB, AABB\}  \big) = \frac{2}{6} \cdot \frac45 \cdot\frac34 \cdot \frac13 + \frac46 \cdot\frac25 \cdot\frac34 \cdot\frac13 + \frac46\cdot \frac35 \cdot\frac24 \cdot\frac13 = \boxed{\frac15}$$
+			
+			\item We use the same notation of events as before: $A$ means a good refrigerator is found, and $B$ means a defective refrigerator is found. If we consider that at most 4 refrigerators have been tested, and both of the defective refrigerators have already been found, it is implied that the last defective refrigerator was found either in the $2^{nd}$, $3^{rd}$, or $4^{th}$ test. Thus, the set of possibilities is:
+			$$ \{ BB, BAB, ABB, BAAB, ABAB, AABB\}$$
+			Hence, the probability that no more than four refrigerators needs to be tested to find both of the defective refigerators is 
+			\begin{align*}
+				P(\{ BB, BAB, ABB, BAAB, ABAB, AABB\}) &= \left( \frac26 \cdot \frac15 \right) + \left( \frac26 \cdot \frac45 \cdot \frac14 \right) + \left( \frac46 \cdot \frac25 \cdot \frac14\right) \\
+				&\quad \quad \quad \quad
+				+ \left( \frac26 \cdot \frac45 \cdot \frac34 \cdot \frac13 \right) + \left( \frac46 \cdot \frac25 \cdot \frac34 \cdot \frac13 \right) \\
+				&\quad \quad \quad \quad
+				+ \left( \frac46 \cdot \frac35 \cdot \frac24 \cdot \frac13 \right)
+			\intertext{}
+				\therefore P(\{ BB, BAB, ABB, BAAB, ABAB, AABB\}) &= \left( \frac{1}{15} \right) + 2 \left( \frac{1}{15} \right) + 3 \left( \frac{1}{15} \right)\\
+				&= \boxed{\frac25}
+			\end{align*}
+		
+			\item Here we define two new events: $C$ is the event in which the second defective refrigerator is found on the $3^{rd}$ test, and $D$ is the event in which the second defective refrigerator is found on the $4^{th}$ test. We can observe that $P(C)=\frac14$, and $P(D)=\frac34 \cdot \frac13 = \frac14$. The probability that the remaining defective refrigerator is found in the third or fourth test is thus given by:
+			$$P( C \cup D) = P(C) + P(D) - P(C \cap D) = \frac14 + \frac14 - 0 = \boxed{\frac12}$$
 		\end{enumerate}
 	\end{sol}
-	
+
+\pagebreak
+
+\section*{Problem 10: WMS 2.128} 
+	\emph{Use \textbf{Theorem 2.8, the law of total probability}, to prove the following:
+	\begin{enumerate}[$\quad\quad$a)]
+		\item $P(A \mid B) = P (A \mid B^C) \implies A$ and $B$ are independent.
+		\item $P(A \mid C) > P(B \mid C) $ and $P(A \mid C^C) > P (B \mid C^C) \implies P(A) > P(B)$
+	\end{enumerate}
+	}
+	\begin{sol}
+		\begin{enumerate}[$\quad\quad$a)]
+			\item First, we assume that $P(A \mid B) = P(A \mid B^C) = p$ for $p \in (0,1)$. By Theorem 2.8, we have that
+			\begin{align*}
+				P(A) &= P(A \mid B) P(B) + P(A \mid B^C)P(B^C) \\
+					&= p(P(B) + P(B^C)) \\
+					&= p
+			\end{align*}
+			And so $P(A\mid B) = P(A)$, meaning that $A$ and $B$ are independent.
+			
+			\item We know that
+			$ P(A \mid C) > P(B \mid C)$. If we multiply both sides by the probability $P(C)$, we now get
+			$$P(A \mid C)P(C) > P(B \mid C)P(C)$$
+			Similarly, we know that $P(A\mid C^C) > P(B \mid C^C)$. If we multiply both sides by the probability $P(C^C)$, we get:
+			$$ P(A \mid C^C)P(C^C) > P(B\mid C^C) P(C^C)$$
+			If we add both inequalities, we get:
+			$$ P(A \mid C )P(C) + P(A \mid C^C) P(C^C) > P(B \mid C) P(C) + P(B\mid C^C)P(C^C)$$
+			Again, by Theorem 2.8 we have
+			\begin{align*}
+				P(A \mid C) P(C) + P(A \mid C^C) P(C^C) &= P(A) \\
+				P(B \mid C) P(C) + P(B \mid C^C) P(C^C) &= P(B)
+			\end{align*}
+			Hence, we get
+			$$ P(A) > P(B)$$
+			as desired.
+		\end{enumerate}
+	\end{sol}
+
+\pagebreak
+
+\section*{Problem 11: WMS 2.134}
+	\emph{Two methods, $A$ and $B$, are available for teaching a certain industrial skill. THe failure rate is 20\% for $A$ and 10\% for $B$. However, $B$ is more expensive and hence is used only $30\%$ of the time. ($A$ is thus used 70\% of the time.) A worker was taught a skill by one of the methods but failed to learn it correctly. What is the probability that the worker was taught by method $A$?}
+	\begin{sol}
+		We begin by defining an event $C$ when failure to learn a method is encountered. We thus have the following probabilities:
+		\begin{multicols}{2}
+			\begin{itemize}
+				\item $P(C \mid A) = 0.2$ 
+				\item $P(C \mid B) = 0.1$
+				\item $P(A) = 0.7$
+				\item $P(B) = 0.3$
+			\end{itemize}
+		\end{multicols}
+		Consider that a random worker is taught a skill by either one of the two methods, but coincides with event $C$, meaning that the worker failed to learn with that method. If we now want the probability that this worker was taught by method $A$, we use \textbf{Baye's rule}:
+		
+		\begin{align*}
+			P(A \mid C) &= \frac{P(C \mid A) P(A)}{P(C \mid A)P(A) + P(C \mid A^C) P(A^C)} \\
+			&= \frac{(0.2)(0.7)}{(0.2)(0.7)+(0.1)(0.3)} \\
+			&= \boxed{\frac{14}{17}}
+		\end{align*}
+	\end{sol}
+
+\pagebreak
+
+\section*{Problem 12}
+\emph{Prove that if $A$, $B$, and $C$ are independent, then $A \cup B$ is independent of $C$}
+
+	\begin{proof}
+		We begin by recalling that two events $A, B$ are independent of each other if $P(A\cap B) = P(A)P(B)$. Here, we have $P\big( (A \cup B) \cap C \big) = P\big( (A \cap C) \cup (B \cap C)\big)$. Also recall that $P(A \cup B) = P(A)+P(B)-P(A \cap B)$. Now, we can write $P\big( (A \cup B) \cap C \big) = P\big( (A\cap C) \cup (B \cap C)  \big)$ as:
+		\begin{align*}
+			P\big( (A \cup B) \cap C \big) &= P(A \cap C) + P(B \cap C)- P\big(A \cap B \cap C\big)
+		\end{align*}
+		Now if we assume that $A, B$ and $C$ are independent, then:
+		\begin{align*}
+			P(A \cap C) &= P(A) P(C) \\
+			P(B \cap C) &= P(B) P(C)
+		\end{align*}
+		and so $P(A \cap B \cap C) = P(A)P(B)P(C)$, which gives
+		\begin{align*}
+			P\big( (A \cup B) \cap C \big) &= P(A)P(C) + P(B)P(C) - P(A)P(B)P(C) \\
+			&= \big( P(A)+P(B)-P(A)P(B)\big)P(C)
+		\end{align*}
+		We know that $A$ and $B$ are independent, so $P(A)P(B)=P(A\cap B)$, so
+		$$ P\big( (A \cup B) \cap C \big) = \big( P(A)+P(B)-P(A\cap B)\big)P(C)$$
+		We also know that $P(A\cup B) = P(A) + P(B) - P(A \cap B)$, so
+		$$ P\big( (A \cup B) \cap C \big) = P(A \cup B) P(C)$$ which implies that $A \cup B$ is independent of $C$.
+		
+	\end{proof}
 \end{document}  
 
 	
