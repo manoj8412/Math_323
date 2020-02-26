@@ -1,8 +1,7 @@
 %UsePackages
-\usepackage{amsmath, amsfonts, amssymb, amsthm, array, cite, etoolbox, enumerate, epsfig, epstopdf, eucal, fancyhdr, float, listings, lstautogobble, mathtools, makecell, mathtools, multirow, multicol, placeins, setspace, subcaption, stmaryrd, textcomp, tikz, tabto, titling, upgreek, url, xcolor, tikz}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, array, cite, etoolbox, enumerate, epsfig, epstopdf, eucal, fancyhdr, float, listings, lstautogobble, mathtools, makecell, mathtools, multirow, multicol, placeins, setspace, subcaption, stmaryrd, textcomp, tikz, tikz-qtree,  tikz-qtree-compat, tabto, titling, upgreek, url, xcolor, tikz}
 \usepackage[pagebackref]{hyperref}
-\usepackage[font=singlespacing, 
-			font={small}]{caption}
+\usepackage[font=singlespacing, font={small}]{caption}
 \usepackage[left=2.5cm, top=2.5cm, right=2.5cm, bottom=2.5cm]{geometry}
 \usepackage[version=3]{mhchem}
 \usepackage[utf8]{inputenc}
@@ -10,10 +9,17 @@
 \usepackage[makeroom]{cancel}	
 \usepackage[normalem]{ulem}
 \useunder{\uline}{\ul}{}
-
+\usetikzlibrary{angles, calc, quotes, trees}
 %Colors
 \definecolor{green}{rgb}{0.0, 0.42, 0.24}
 \definecolor{grey}{rgb}{0.36, 0.54, 0.66}
+%Tikz setup
+\tikzset{
+	treenode/.style = {shape = rectangle, rounded corners, draw, align=center},
+	root/.style			 = {treenode, font = \Large},
+	env/.style 			 = {treenode, font = \normalsize},
+	dummy/.style   = {circle, draw}
+}
 
 %Patches
 \lstset{

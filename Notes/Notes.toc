@@ -6,3 +6,5 @@
 \contentsline {subsection}{\numberline {2.1}Introduction}{3}{subsection.2.1}% 
 \contentsline {subsection}{\numberline {2.2}Conditional Probability}{9}{subsection.2.2}% 
 \contentsline {subsection}{\numberline {2.3}Baye's Rule}{12}{subsection.2.3}% 
+\contentsline {subsection}{\numberline {2.4}Multinomial Coefficients}{15}{subsection.2.4}% 
+\contentsline {section}{\numberline {3}Discrete Random Variables}{17}{section.3}% 

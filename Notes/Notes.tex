@@ -281,11 +281,11 @@
 		A hand is a subset of 5 cards from a deck of 52 cards.
 		$$ C_r^n = C_5^{52} = \frac{52!}{5! (47!)} = \frac{48 \times 49 \times 50 \times 51 \times 52}{1 \times 2 \times 3 \times 4 \times 5}$$
 		What is the probability that a selected (or random) hand will contain at least one Jack?
-		Let $A = $"At least 1 Jack" such that  $A^c =$ "No jack". Then,
+		Let $A = $``At least 1 Jack" such that  $A^c =$ ``No jack". Then,
 		\begin{align*}
 			P(A^c) &= \frac{C^{48}_5}{C^{52}_5} &P(A) = 1-P(A^c)
 		\end{align*}
-		If we let $A_i = $"At least $i$ Jacks" for $i=1,2,3,4$, then
+		If we let $A_i = $``At least $i$ Jacks" for $i=1,2,3,4$, then
 		\begin{align*}
 			P(A) &= P\left( \bigcup_{i=1}^4 A_i \right)  \\
 			&= \sum_{i=1}^4 P(A_i) &P(A_i) = \frac{C_i^4 \times C_{5-i}^{48}}{C_{5}^{52}}
@@ -300,7 +300,7 @@
 		\end{align*}
 	\end{exmp}
 	\begin{exe}
-		The letters of the word "ANANAS" are written on 6 marbles. Select 3 marbles successively, without replacement, from the initial 6 marbles to form a 3 letter word.
+		The letters of the word ``ANANAS" are written on 6 marbles. Select 3 marbles successively, without replacement, from the initial 6 marbles to form a 3 letter word.
 	\end{exe}
 \hfill
 	\begin{thm}
@@ -537,5 +537,329 @@
 				\item $P(B \mid A) = \frac{5}{12} $
 			\end{enumerate}
 		\end{sol}
+	\end{exmp}
+	\begin{exmp}
+		On a weather forecast model we have that:
+		\begin{enumerate}[$\quad\quad$a)]
+			\item If today is rainy, then tomorrow is rainy with a probability of 0.6.
+			\item If today is sunny, then tomorrow is sunny with a probability of 0.7.
+		\end{enumerate}
+		Suppose Monday is rainy. What is the probability that Wednesday is rainy?
+		\begin{sol}
+			Consider the following tree structure representing the probabilities of the forecast model:
+			\begin{figure}[h]
+				\begin{tikzpicture}
+					[sibling distance = 4cm]
+					\node [root] {Rainy}
+						child { 
+							node [env] {Rainy} 
+								[sibling distance = 2cm]
+								child {
+									node [env] {Rainy}
+									edge from parent node [above=2mm, left] {0.6}
+								}
+								child {
+									node [env] {Sunny}
+									edge from parent node [above=2mm, right] {0.4}
+								}
+							edge from parent node [above=2mm, left] {0.6}
+						}
+						child { 
+							node [env] {Sunny} 
+								[sibling distance = 2cm]
+								child {
+									node [env] {Rainy}
+									edge from parent node [above=2mm, left] {0.3}
+								}
+								child {
+									node [env] {Sunny}
+									edge from parent node [above=2mm, right] {0.7}
+								}
+							edge from parent node [above=2mm, right] {0.4}
+						};
+				\end{tikzpicture}
+			\end{figure}
+		
+			\noindent
+			Let $B = $``Wednesday is rainy",  $A_1 = $ ``Tuesday is rainy", and $A_2=$ ``Tuesday is sunny." Then,
+			\begin{align*}
+				P(A_1) = 0.6 &\implies P(B \mid A_1) = 0.6 \\
+				P(A_2) = 0.4 &\implies P(B \mid A_2) = 0.3\\
+				\therefore P(B) &= P(B \mid A_1) P(A_1) + P(B \mid A_2) P(A_2) \\
+				&= (0.6)(0.6) + (0.3)(0.4) \\
+				&\boxed{= 0.48}
+			\end{align*}
+		\end{sol}
+	\end{exmp}
+
+\subsection{Multinomial Coefficients}
+	We begin by recalling that \emph{binomial coefficients} are such that a combination with $C_k^n$ is clearly defined
+	
+	\begin{figure}[h]
+		\begin{subfigure}{0.46\textwidth}
+			\begin{center}
+				\begin{tikzpicture}
+					[sibling distance = 3cm]
+					\node [root] {$n$}  
+						child{
+							node [env] {$k$}
+							edge from parent node [above, left=2mm]{$S_1$}
+						}
+						child{
+							node [env] {$k-1$}
+							edge from parent node [above, right=2mm]{$S_2$}
+						}
+					;
+					\draw node [above=4mm, right=2mm]{$S$};
+				\end{tikzpicture}
+			\end{center}
+			\caption*{Partition of a set into two subsets.}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}{0.46\textwidth}
+			\begin{center}
+				\begin{tikzpicture}
+				[sibling distance = 3cm]
+				\node [root] {$n$}  
+				child{
+					node [env] {$n_1$}
+					edge from parent node [above, left=4mm]{$S_1$}
+				}
+				child{
+					node [env] {$n_2$}
+					edge from parent node [above, right=1mm]{$S_2$}
+				}
+				child{
+					node [env] {$n_3$}
+					edge from parent node [above, right=4mm]{$S_3$}
+				}
+				;
+				\draw node [above=4mm, right=2mm]{$S$};
+				\end{tikzpicture}
+			\end{center}
+			\caption*{Partition of a set into three subsets.}
+		\end{subfigure}
+	\end{figure}
+	We consider the above cases to generalize by induction. In the case where we have 3 partitions, we have that  $n=n_1 = n_2 = n_3$, and so the total number of partitions is
+	\begin{align*}
+		C_{n_1}^n &= C_{n_3}^{n- n_1} \\
+		&= \frac{n!}{(n-n_3)! n!} \\
+		&= \frac{n!}{n_2 ! (n-n_1 -n_3)!} \\
+		&= \frac{n!}{n_1 ! n_2 ! n_3 !}
+	\end{align*}
+	\begin{figure}[h]
+		\begin{tikzpicture}
+		[sibling distance = 3cm]
+		\node [root] {$n$}  
+		child{
+			node [env] {$n_1$}
+			edge from parent node [above, left=4mm]{$S_1$}
+		}
+		child{
+			node [env] {$n_2$}
+			edge from parent node [above, right=1mm]{$S_2$}
+		} 
+		child{ 
+			node [env] {$n_k$}
+			edge from parent node [above, right=4mm]{$S_k$}
+		}
+		;
+		\draw node [above=4mm, right=2mm]{$S$}
+		node[below=1.5cm, right=1.2cm]{$\dots$};
+		\end{tikzpicture}
+	\end{figure}
+
+	Now suppose that we partition a set $S$ with $n$ elements into subsets $S_1, S_2, \dots, S_k$ with respective $n_1, n_2, \dots, n_k$ elements ($\sum_i n_i = n$), so the total number of partitions is given by 
+	$$
+		\boxed{
+		\label{eq:partno}
+		\binom{n}{n, n_1, \dots, n_k} = \frac{n}{n_1 ! n_2 ! \dots n_k !}
+		}
+	$$
+	\begin{exmp}
+		10 employees are split in $k=3$ ways for $3$ different tasks. There are 3 people assigned to task 1, 2 people assigned to task 2, and 5 people assigned to task 3. Suppose that the assignment is done randomly. What is the probability that Peter and John do not belong to the same team?
+	\end{exmp}
+	\begin{sol}
+		Recall that 
+		$$ C_{n_1}^n = C_{n_{2}}^{n-n_1} = C_{n_3}^{n-n_1 - n_2}$$
+		Hence:
+		\begin{align*}
+			C_{n_1}^n &= \frac{n!}{n_1 ! \cancel{(n-n_1)!}} \cdot \frac{\cancel{(n-n_1)!}}{n_2 ! \cancel{(n-n_1 - n_2)!}} \cdot \frac{\cancel{(n-n_1 -n_2)!}}{n_3!} \\
+			&= \frac{n!}{n_1 ! n_2 ! n_3 !} \\
+			&= \binom{n}{n_1, n_2, n_3}
+		\end{align*}
+	Generally, if there are $k$ tasks and $n$ employees, with $n_1$ employees going to task $i$, then:
+	$$ \sum_{i=1}^k n_i = n$$ \noindent We thus consider the cases where both Peter and John are on the same team:
+	\begin{figure}[h]
+		\begin{subfigure}{0.3\textwidth}
+			\begin{center}
+				$A_1^C$ \\ $\quad$
+				
+				\begin{tikzpicture}
+				[sibling distance = 2cm]
+				\node [root] {8}  
+				child{
+					node [env] {1}
+				}
+				child{
+					node [env] {2}
+				} 
+				child{ 
+					node [env] {5}
+				}
+				;
+				\end{tikzpicture}
+			\end{center}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}{0.3\textwidth}
+			\begin{center}
+				$A_2^C$ \\ $\quad$
+				
+				\begin{tikzpicture}
+				[sibling distance = 2cm]
+				\node [root] {8}  
+				child{
+					node [env] {3}
+				}
+				child{
+					node [env] {0}
+				} 
+				child{ 
+					node [env] {5}
+				}
+				;
+				\end{tikzpicture}
+			\end{center}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}{0.3\textwidth}
+			\begin{center}
+				$A_3^C$ \\ $\quad$ 
+				
+				\begin{tikzpicture}
+				[sibling distance = 2cm]
+				\node [root] {8}  
+				child{
+					node [env] {3}
+				}
+				child{
+					node [env] {2}
+				} 
+				child{ 
+					node [env] {3}
+				}
+				;
+				\end{tikzpicture}
+			\end{center}
+		\end{subfigure}
+	\end{figure}
+
+\noindent
+	Hence, $$P(A^C) = \frac{A_1^C + A_2^C + A_3^C}{\left( \frac{10!}{3! 2! 5!} \right)} $$ $$ \therefore P(A) = 1 - P(A^C) = 1 - \frac{A_1^C + A_2^C + A_3^C}{\left( \frac{10!}{3! 2! 5!} \right)}$$
+	\end{sol}
+
+	\begin{thm} \textbf{Multinomial Theorem}
+		$$ (a_1 + a_2 + \dots + a_k)^n = \sum_{n_1 + n_2 + \dots + n_k = n} \binom{n}{n_1, n_2, \dots, n_k} \prod_{i=1}^k a_i^{n_i}$$
+		where $ \binom{n}{n_1, n_2, \dots, n_k} = \frac{n!}{n_1 ! n_2 ! \dots n_k !}$
+	\end{thm}
+	\begin{exe}
+		Consider $(1+k + 2k^5)^7$. Find the coefficient of $k^5$.
+	\end{exe}
+	\begin{exmp}
+		$$ (a+b+c)^3 \implies \begin{array}{ccc}
+		\boxed{(3,0,0)}& (1,2,0)&\boxed{ (0,2,1)} \\
+		(2,1,0) & (1,0,2) &(0,0,3) \\
+		(2,0,1) & (1,1,1) & (0,3,0)
+		\end{array}$$
+	\end{exmp}
+\pagebreak
+\section{Discrete Random Variables}
+	We let $\Omega$ be a sample space. We assign a number to each probable element such that the sum of all elements is one, so for $k$ elements with corresponding probabilities $p_i$ for $i=1,2,\dots, k$, we have 
+	$$ \sum_{i = 0}^k p_i = 1$$
+	\begin{defn}
+		A \textbf{random variable} $(r, \sigma)$ is a function $X: \Sigma \to \R$ such that:
+		$$ \forall \omega \in \Omega: \quad X(\omega) \in \R$$
+	\end{defn}	
+	\begin{exmp}
+		Flip a coin, $\Omega = \{ T, H\}$. Define $X(T) = -5$, $X(H)=10$. 
+	\end{exmp}
+	\begin{exmp}
+		Toss a die and add the numbers obtained. We have:
+		$$ \Omega = \left\{ (\omega_i, \omega_j):  
+		\begin{array}{c}
+			i = 1,2,3,4,5,6\\
+			j=1,2,3,4,5,6
+		\end{array}
+		\right\}$$
+		$$ \therefore X: \Omega \to \R \implies X(\omega_1, \omega_2) = i +j$$
+	\end{exmp}
+	\begin{defn}
+		A \textbf{discrete random variable} is a random variable $X: \Omega \to \R$ that is said to be discrete if its \emph{range} $X(\Omega)$ is countable. Note that it can be either finite or infinite.
+		\begin{figure}[h]
+			\begin{tikzpicture} 
+				% Omega Ellipse
+				\draw (0,0) ellipse (1cm and 2.5cm) 
+					node[above=2.2cm, left=1cm]{$\Omega$}
+					(0,1.5) node{$p_1 \omega_1$} 
+					(0,0.75) node{$p_2 \omega_2$}  
+					(0,0) node{$p_3 \omega_3$}  
+					(0, -0.75) node{$\vdots$} 
+					(0,-1.5) node{$p_n \omega_n$}
+				;
+				% Real Line
+				\draw (4, 2) -- (3, -2) 
+					node[above=4.2cm, right = 1.2cm]{$\R$} 
+					(3.8, 1.2) node{$\bullet$} (4.7, 1.2) node{$p_1+ p_2$}
+					(3.5, 0) node{$\bullet$} (4, 0) node{$p_3$}
+					(3.125, -1.5) node{$\bullet$} (3.7, -1.5) node{$p_n$}
+				;
+				% Arrows
+				\draw [->,  >=stealth, auto ] (0.5,1.5) to [out=20, in = 160] (3.75, 1.2) ;
+				\draw [->,  >=stealth, auto ] (0.5,0.75) to [out=-20, in = -160] (3.75, 1.2) ;
+				\draw [->,  >=stealth, auto ] (0.5, 0) to [out=-10, in = -170](3.45, 0);
+				\draw [->,  >=stealth, auto ] (0.5, -1.5) to [out=-10, in = -170] (3.08, -1.5);
+			\end{tikzpicture}
+		\end{figure}
+	\end{defn}
+	\begin{defn}
+		Let $X$ be a discrete random variable on a sample space $\Omega$, and let $P$ be the probability on $\mathcal{P}(\Omega)$. The \textbf{probability function} of $X$ is the function denoted $P_X: \R \to [0,1]$ such that
+		\vfill
+		$$ P_X(X) = \underline{P}(X=x)$$
+		\pagebreak
+		\begin{rem}
+			$\{X=x\}$ is an event such that $X^{-1} (\{ x\})$. For a discrete random variable, if $x \notin X(\Omega)$, then $\{X=x\} = \varnothing$, meaning that $P_X(X)=0$. If $x \in X(\Omega)$, then we have that
+			$$ P_X(x) = \sum_{X(\Omega) = x} P(\{\omega\})$$
+		\end{rem}
+	\end{defn}
+	\begin{exmp}
+		Let the sample space of a coin toss be $\Omega = \{H, T\}$. For a fair coin, we earn 10 credits for heads but lose 5 credits for tails. Find the probability. What is the probability of losing 5 credits?
+		\begin{sol}
+			We have the following probability table:
+			\begin{table}[h]
+				\begin{tabular}{c|c|c|}
+					Credits  & -5        & 10        \\ \hline
+					$P_X(x)$ & $\frac12$ & $\frac12$
+				\end{tabular}
+			\end{table}
+		
+		\noindent
+		Therefore, 
+		\begin{align*}
+			\left. \begin{array}{c}
+			X(T) =-5 \\
+			X(H) = 10
+			\end{array} \right\} P_X(-5) &= P(X=-5) \\
+			&= P(T) \\
+			&= \frac12
+		\end{align*}
+		\end{sol}
+	\end{exmp}
+	\begin{exmp}
+		Suppose that an item selected at random from a production line can have up to two types of defects:
+		\begin{align*}
+			D_1 &= \text{``Item has defect of type 1."} \\
+			D_2 &= \text{``Item has defect of type 2."}
+		\end{align*}
 	\end{exmp}
 \end{document}      
