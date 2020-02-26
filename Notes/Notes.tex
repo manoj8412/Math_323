@@ -161,10 +161,10 @@
 			1 &= \sum_{k=1}^6 P(\{\omega_k\}) \\
 			&= \sum_{k=1}^6 ck \\
 			&= c\sum_{k=1}^6 k \\
-			&= c\frac{n(n+1)}{2}\bigg|_{n=6} \\
+			&= c\frac{n(n+1)}{2}\bigg|_{n=6} 
+				\intertext{}
 			&= c \frac{6 \times 7}{2} \\
 			&= 21c\\
-		\intertext{ }
 			\therefore c &= \frac{1}{21}
 		\end{align*}
 		
@@ -195,6 +195,8 @@
 			&= \frac{1}{\frac12}\\
 			&= 2
 		\end{align*}
+\pagebreak
+
 		Thus, $P \big( \{ \omega_n \} \big) = 2 \left(\frac{1}{3}\right)^n \implies H$ appears in an even number of trials. Then, what is $P(A)$? Recall that \\ $A = \{ \omega_1, \omega_2, \dots, \omega_n, \dots\} $ so \\
 		\vspace{-1cm}
 		\begin{align*}
@@ -213,7 +215,6 @@
 			\item $P(A \cup B) =  P(A) + P(B) - P(A \cap B)$
 		\end{enumerate}
 	\end{thm}
-	\pagebreak
 	\begin{proof}
 		\begin{enumerate}[$\quad\quad$1)]
 			\item 
@@ -301,6 +302,7 @@
 	\begin{exe}
 		The letters of the word "ANANAS" are written on 6 marbles. Select 3 marbles successively, without replacement, from the initial 6 marbles to form a 3 letter word.
 	\end{exe}
+\hfill
 	\begin{thm}
 		\textbf{The Binomial Theorem:}
 		$$ (a+b)^n = \sum_{k=0}^n C_k^n a^{k}b^{n-k} $$
@@ -312,7 +314,8 @@
 		Find the coefficient of $x^7$ in the expansion of $(2+3x^2)^6$ \\
 		(\emph{Ans: $C_{4}^5 3^4 2^3$})
 	\end{exmp}
-	
+\pagebreak
+
 	We can apply this concept to find the \emph{power set of a fine set}. Let $\Omega$ be a finite set. $\mathcal{P}(\Omega)$ is the power set of $\Omega$. If $|\Omega| = n$, then $|\mathcal{P}(\Omega)|$ is
 	\begin{align*}
 		|\mathcal{P}(\Omega)| &= C_0^n + C_1^n + C_2^n + \dots + C_k^n + \dots + C_n^n \\
@@ -322,4 +325,217 @@
 		&\boxed{= 2^n}
  	\end{align*}
 	
+	\begin{exmp}
+		\begin{align*}
+			(a+b)^4 &= \sum_{k=0}^4 C_k^4 a^k b^{4-k} \\
+			&= b^4 + 4ab^3 + 6a^2 b^2 + 4a^3 b + a^4
+		\end{align*}
+	\end{exmp}
+\hfill
+\subsection{Conditional Probability}
+	Consider rolling a fair die. The probability that we obtain 2 as a result is $\frac{1}{6}$. However, the probability of obtaining 2 from only even numbers is $\frac{1}{3}$.
+	
+	\begin{defn}
+		Let $\Omega$ be a parent set of events, and let us consider subsets of events $A \subset \Omega$ and $B \subset \Omega$.  Then, the \textbf{conditional probability} of $A$ given $B$ is
+		$$ P(A \mid B ) = \frac{P (A \cap B)}{P(B)}$$
+	\end{defn}
+	\begin{center}
+		\begin{tikzpicture}
+		\draw \firstcircle node[below]{$A$};
+		\draw \secondcircle node[below]{$B$};
+		\draw (-2cm, -2cm) -- (4cm, -2cm) -- (4cm, 2cm) -- (-2cm, 2cm) -- (-2cm, -2cm) node[above=4mm, right=2mm]{$\Omega$};
+		\begin{scope}
+			\clip \firstcircle;
+			\fill[grey!40] \secondcircle;
+		\end{scope}
+		\end{tikzpicture}
+	\end{center}
+	\begin{rem}
+		The map $A \mapsto P(A \mid B)$ is a probability on $\mathcal{P}(\Omega)$.
+	\end{rem}
+\pagebreak
+	\begin{exmp}
+		Throw a fair die. We define the following events:
+		\begin{multicols}{3}
+			\begin{itemize}
+				\item $A= $ result is even.
+				\item $B= $ either 1, 2, or 5
+				\item $C= $ either 1 or 2
+			\end{itemize}
+		\end{multicols}
+		Thus:
+		\begin{align*}
+		P(A)  = \frac12 && P(B) = \frac12 && P(C) = \frac13 &&  \\
+		 P(A \cap C) = \frac16 && P(B \cap C) = \frac13 && P (A \cap B) = \frac16 && \\
+		\intertext{Hence:}
+		P(A \mid B) = \frac{P(A \cap B)}{P(B)} = \frac13 && P(A \mid C) = \frac{P(A \cap C)}{P(C)} = \frac12  &&P(B\mid A) = \frac{P(A \cap B)}{P(A)} = \frac13 && \\
+		 P(C \mid A) = \frac{P(A \cap C)}{P(A)} = \frac13 && P(B \mid C) = \frac{P(B \cap C)}{P(C)} = 1 && P(C\mid B) = \frac{P(B \cap C)}{P(B)} = \frac23 &&
+		\end{align*}
+	\end{exmp}
+
+	\begin{defn}
+		Two events $A$ and $B$ are said to be \textbf{independent} if at least one of the following statements is true:
+			\begin{multicols}{3}
+			\begin{itemize}
+				\item $P(B \mid A) = P(B)$ 
+				\item $P(A \mid B) =P(A)$
+				\item $P(A \cap B) = P(A ) P(B)$
+			\end{itemize}
+		\end{multicols}
+	\end{defn}
+	\begin{exmp}
+		In Example 2.13:    
+		\begin{itemize}
+			\item$A$ and $B$ are not independent $\left(P(A \cap B) = \frac16, \quad P(A)P(B) = \frac14\right)$
+			\item $A$ and $C$ are independent $\left(P(A \cap C) = \frac16, \quad P(A)P(C) = \frac16\right)$
+			\item $B$ and $C$ are not independent $\left(P(B\cap C) = \frac13, \quad P(B)P(C) = \frac16\right)$
+		\end{itemize}
+	\end{exmp}
+	\begin{exmp}
+		Toss a coin (which is such that $P(H) = p \in (0,1)$)twice. What is the probability that we will obtain $T$ twice? 
+		$$ P (\underbrace{\{ T\} \times \{T\} }_{TT} )$$ 
+		By design, the outcome obtained on the first toss is \emph{independent from the outcome obtained in the second toss:}
+		\begin{align*}
+			P(TT) &= P \big( \{T\} \big) \times  P \big( \{T\} \big) \\
+			&= (1-p)^2
+		\end{align*}
+	\end{exmp}
+	\begin{exmp}
+		Toss a coin such that $P \big(  \{H\} \big) = p \in (0,1)$ until $H$ appears. 
+		\begin{sol}
+			We have:
+			$$ \Omega = \{ H, TH, TTH, TTTH, \,\, \dots\, \, , \underbrace{T\dots T}_{n-1}H \}$$
+			\begin{align*}
+			\therefore P(\omega_n) &= \big( P(T) \big)^{n-1} \times \big( P(H) \big) \\
+			&= (1-p)^{n-1} \times (p)
+			\intertext{We now recall infinite series expansion to evaluate $P(\omega_n)$:}
+			\sum_{n=1}^\infty (1-p)^{n-1} (p) &= p \sum_{n=1}^\infty (1-o)^{n-1} \\
+			&= p \sum_{n=0}^\infty (1-p)^n \\
+			&= p \left( \frac{1}{1-(1-p)} \right) \\
+			&= 1
+			\end{align*}
+		\end{sol}
+ 	\end{exmp}
+ \begin{thm}
+ 	If $A$ and $B$ are independent ($A \perp B$), then so are $A^C$ and $B^C$. Consequently:
+ 	\begin{align*}
+ 		A^C \perp B && B^C \perp A
+ 	\end{align*}
+ \end{thm}
+	\begin{proof}
+		\begin{align*}
+			P(A^C \cap B ) &= P (B \setminus A) \\
+			&= P(B) - P(A \cap B) \\
+			&= P(B) -P(A)P(B) \\
+			&= P(B) - (1- P(A)) \\
+			&= P(B) P(A^C)
+		\end{align*}
+		$B^C$ and $A$ are similarly shown to be independent.
+	\end{proof}
+	\hfill
+	\begin{exmp}
+		Let $P(A) = 0.7$, $P(B)=0.8$, $A$ and $B$ are independent ($A \perp B$). Find $P(A^C \cap B^C)$.
+	\pagebreak
+		\begin{sol}
+			$ $
+			\begin{align*}
+				P(A^C\cap B^C) &= P(A^C)P(B^C)\\
+				&= (0.3)(0.2)\\
+				&\boxed{= 0.06}
+			\end{align*}
+		\end{sol}
+	\end{exmp}
+	\begin{exmp}
+		Let $P(A) = 0.7$, $P(B)=0.8$, $A$ and $B$ are independent ($A\perp B$). Find $P(A \cup B)$.
+		\begin{sol}
+			\begin{align*}
+				(A \cup B)^C &= A^C \cap B^C \\
+				&= P(A) + P(B) - P(A \cap B) \\
+				&= P(A) + P(B) - P(A)P(B)\\
+				&= 0.7 + 0.8 - 0.56 \\
+				&\boxed{=0.94}
+			\end{align*}
+		\end{sol}
+	\end{exmp}
+ 	\begin{exe}
+ 		A die is such that $P\big( \{ \omega_2 \} \big) = p$, $P\big( \{\omega_4\} \big) = q$, and $p+q \in (0, 1)$. Roll the die until 2 or 4 appears. What is the probability that 2 appears first?\\
+ 		(\emph{Ans: $\frac{p}{p+q}$} )
+ 	\end{exe}
+\subsection{Baye's Rule}
+	\begin{exmp}
+		On a given exam, we are given the following distribution:
+		\begin{table}[h]
+			\begin{tabular}{c|c|c|c}
+				& Success (S) & Failure (Fl) & Total \\ \hline
+				Male (M)   & 0.3         & 0.1         & 0.4   \\ \hline
+				Female (Fm) & 0.4         & 0.2         & 0.6   \\ \hline
+				Total      & 0.7         & 0.3         & 1    
+			\end{tabular}
+		\end{table}
+		Here,
+		\begin{center}
+			\begin{multicols}{2} 
+				\begin{itemize}
+					\item $P(M) = 0.4$
+					\item $P(Fm) = 0.6$
+					\item $P(S \mid M) = \frac34$
+					\item $P(S \cap M)=0.3$
+					\item $P(S \cap Fm)=0.4$
+					\item $P(S \mid Fm) = \frac23$
+				\end{itemize}
+			\end{multicols}
+		\end{center}
+		Thus, 
+		\begin{align*}
+			P(S) &= P(M \cap S) + P(Fm\cap S)  \\
+			&= P (S \mid M) P(M) + P (S \mid Fm) P(Fm) \\
+			&= \left( \frac34 \times \frac{4}{10} \right) + \left( \frac23 \times \frac{6}{10} \right)\\
+			&\boxed{= \frac{7}{10}} 
+		\end{align*}
+	\end{exmp}
+	\begin{defn}
+		Let $\Omega$ be a sample space. A \textbf{finite partition } of $\Omega$ is given by events $A_1, A_2, A_3, \,\, \dots, A_n$, which are pairwise disjoint, and also 
+		$$ \bigcup_{n \in \N^*} A_n= \Omega $$
+	\end{defn}
+	\begin{figure}[h]
+		\begin{tikzpicture}
+			\draw (0,0) -- (4, 0) -- (4, 2) -- (0,2) -- (0,0) node[right= 5mm, above=7mm]{$A_1$};
+			\draw (1, 0) -- (1, 2) node[right= 5mm, below=7mm]{$A_2$} ;
+			\draw (2, 0) -- (2, 2) node[right= 5mm, below=8mm]{$\dots$} ;
+			\draw (3, 0) -- (3, 2) node[right= 5mm, below=7mm]{$A_n$};
+		\end{tikzpicture}
+	\end{figure}
+	
+	\begin{thm} \textbf{Baye's Theorem}\\
+		Given a partition $A_1, A_2, \,\dots, A_n$ of $\Omega$, suppose that $P(A_1)$, $P(A_2)$, $\dots$, $P(A_n)$ are known. Suppose that for an event $B$, the following are known: $P(B \mid A_1), P(B \mid A_2), \dots, P(B \mid A_n)$. Thus:
+		\begin{enumerate}
+			\item $\quad$ 
+			\begin{center}
+				$P(B) = \sum_{i= 1}^n P(B \mid A_i) P(A_i) $
+			\end{center}
+			
+			\item Let $k \in \{1, 2, \dots, n\}$ be fixed. Then: $$ P(A_k \mid B ) = \frac{P (B \mid A_k) P(A_k)}{\sum_{i=1}^n P(B\mid A_i) P(A_i)}$$
+		\end{enumerate}
+	\end{thm}
+	\begin{proof}
+		Let $B = \Omega$, then:
+		\vspace{-1cm}
+		\begin{align*}
+			B &= B \cap \left( \cup_{n \in \N^*} A_n \right) \\
+			&= \cup_{n \in \N^*} \left( B \cap A_n \right) \\
+			\therefore P(B) &= \sum_{k=1}^n P(B \cap A_k) \\
+			\therefore P(A_i \mid B) &= \frac{P(B \cap A_i)}{P(B)} \\
+			&= \frac{P(B \mid A_i) P(A_i)}{P(B)}
+		\end{align*}
+	\end{proof}
+	\begin{exmp}
+		We have 2 urns. Urn 1 has 3 red balls and 2 blue balls, and urn 2 has 5 red balls and 6 blue balls. We now select a ball from urn 1, place it in urn 2, and select a ball from urn 2. What is the probability that said ball is red?
+		\begin{sol}
+			Let $A$ be the event where the ball from urn 2 is red, and $B$ where the ball from urn 1 is blue. By Baye's Theorem,
+			\begin{enumerate}
+				\item$ P(A) = \frac{2}{5} \cdot \frac{5}{12} + \frac{1}{2}\cdot \frac{3}{9} = \frac{7}{15}$
+				\item $P(B \mid A) = \frac{5}{12} $
+			\end{enumerate}
+		\end{sol}
+	\end{exmp}
 \end{document}      
