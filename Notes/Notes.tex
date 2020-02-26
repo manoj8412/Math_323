@@ -861,5 +861,107 @@
 			D_1 &= \text{``Item has defect of type 1."} \\
 			D_2 &= \text{``Item has defect of type 2."}
 		\end{align*}
+		Then, we assign $P(D_1) = 0.7$, $P(D_2) = 0.5$, and $P(D_1 \cap D_2) = 0.3$. Let $X$ be the possible number of defects that an item selected at random can have such that:
+		$X(\Omega) = \{0,1,2 \}$. This is the support for $P_X$. Hence,
+		
+		\begin{align*}
+			P_X(2) &= P(X=2) \\
+			&= P(D_1 \cap D_2) \\
+			&= 0.3
+		\end{align*}
+		\begin{align*}
+			P_X(1) &= P(X=1) \\
+			&= P(D_1 \triangle D_2) \\
+			&= P \big( (D_1 \cap D_2^C ) \cup (D_1^C \cap D_2)\big) \\
+			&= P(D_1 \cap D_2^C) + P(D_1 \cap D_2^C)\\
+			&= P(D_1) - P(D_1 \cap D_2) + P(D_2) - P(D_1 \cap D_2) \\
+			&= 0.6
+		\end{align*}
+		\begin{align*}
+			P_X(0) &= P(D_1^C \cap D_2^C) \\
+			&= P\big( (D_1 \cup D_2)^C \big) \\
+			&= 1 - P(D_1 \cup D_2)\\
+			&= 1 - 0.9\\
+			&= \frac{1}{10}
+		\end{align*}
 	\end{exmp}
+\subsection{Cumulative Distribution Function}
+\begin{defn}
+	Let $X$ be a random variable (discrete or not). The \textbf{cumulative distribution function} of $X$ is the function:
+	$$ F_X = \begin{cases}
+	R \to [0,1] \\
+	x \mapsto P \big( \{ x_1 \leq x_2 \} \big)
+	\end{cases}$$
+	It has the following properties:
+	\begin{multicols}{2}
+		\begin{enumerate}[(1)]
+			\item $$\lim\limits_{x \to - \infty} F_X (x) = 0$$ $$\lim\limits_{x \to + \infty} F_X (x) = 1$$ 
+			\item $F_X$ is \emph{nondecreasing}, meaning $$x_1 \leq x_2 \implies F_X(x_1) \leq F_X(x_2)$$
+			\item $F_X$ is always right continuous, meaning $$\lim_{x \to x_0^+} F_X(x) = F_X(x_0) $$
+			\item For a discrete random variable, $F_X$ is a \emph{step-function}.
+		\end{enumerate}
+	\end{multicols}
+\end{defn}
+\begin{exmp}
+	Given the following probability table, find $F_X$.
+	\begin{table}[h]
+		\begin{tabular}{c|c|c|c}
+			x  & 0        & 1 & 2        \\ \hline
+			$P_X(x)$ & 0.1 & 0.6 & 0.3
+		\end{tabular}
+	\end{table}
+\end{exmp}
+\vfill
+\begin{sol}
+	We have the following range:
+	\begin{center}
+		\begin{tikzpicture}
+			\draw (0, 0) -- (10, 0)
+			;
+			\foreach \x in {0, ..., 10}
+				\draw (\x, -0.1) -- (\x, 0.1);
+			\draw 
+				(0,0) node[below=-1.6mm]{$\bullet$} node[above]{0.1} node[below]{0}
+				(5,0) node[below=-1.6mm]{$\bullet$} node[above]{0.6} node[below]{1}
+				(10,0) node[below=-1.6mm]{$\bullet$} node[above]{0.3} node[below]{2}
+			;
+		\end{tikzpicture}
+	\end{center}
+	\begin{figure}[h]
+		\begin{subfigure}{0.49\textwidth}
+			$$ 
+			F_X = \begin{cases}
+			0 & x \in (-\infty, 0) \\
+			0.1 & x \in [0, 1) \\
+			0.7 & x \in [1, 2) \\
+			1 & x \in [2, + \infty)
+			\end{cases}
+			$$
+		\end{subfigure}
+	\hfill
+		\begin{subfigure}{0.49\textwidth}
+			\begin{center}
+				\begin{tikzpicture}
+					% Axes
+					\draw [->, >=stealth, auto] (0,0) to (2.5, 0) node[right]{$x$} ;
+					\draw [->, >=stealth, auto] (0,0) to (0, 3) node[above]{$P_X(x)$};
+					\foreach \x in {1, 2}
+						\draw (\x, -0.1) -- (\x, 0.1) node[below=2mm]{\x};
+					\foreach \x in {0.2, 1.4, 2}
+						\draw (-0.1, \x) -- (0.1, \x);
+					\draw (0, 0.2) node[left=2mm]{0.1} (0, 1.4) node[left=2mm]{0.7} (0, 2) node[left=2mm]{1};
+					% Data
+					\draw 
+						(0,0.2) node[below=-1.8mm]{$\bullet$} (1, 0.2) node[below=-1.8mm]{$\circ$}
+						(1,1.4) node[below=-1.8mm]{$\bullet$} (2, 1.4) node[below=-1.8mm]{$\circ$}
+						(2,2) node[below=-1.8mm]{$\bullet$} (0, 0) node[below=-1.8mm]{$\circ$}
+					;
+					\draw (0,0.2) -- (0.95,0.2);
+					\draw (1,1.4) -- (1.95, 1.4);
+				\end{tikzpicture}
+			\end{center}
+		\end{subfigure}
+	\end{figure}
+	
+\end{sol}
 \end{document}      

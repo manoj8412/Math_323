@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.2.17)  26 FEB 2020 17:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.2.17)  26 FEB 2020 18:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1418,20 +1418,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 450--451
 
  []
 
-[12] [13] [14] [15] [16] [17] [18]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 865.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 865.
+[12] [13] [14] [15] [16] [17] [18] [19] [20]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 967.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 967.
  (./Notes.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 865.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 865.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 967.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 967.
 Package rerunfilecheck Info: File `Notes.out' has not changed.
-(rerunfilecheck)             Checksum: AD67F5152402DC677549DF0095960C8F;555.
+(rerunfilecheck)             Checksum: 2B2DE59FE91F0BF5011B9ADE3FF9C92D;637.
  ) 
 Here is how much of TeX's memory you used:
- 34652 strings out of 492167
- 637250 string characters out of 6131558
- 726163 words of memory out of 5000000
- 38372 multiletter control sequences out of 15000+600000
+ 34666 strings out of 492167
+ 637405 string characters out of 6131558
+ 726166 words of memory out of 5000000
+ 38375 multiletter control sequences out of 15000+600000
  547410 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  68i,19n,71p,805b,1456s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1459,10 +1459,10 @@ dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/font
 s/type1/public/amsfonts/symbols/msbm7.pfb></usr/share/texmf-dist/fonts/type1/pu
 blic/cm-super/sfrm1000.pfb></usr/share/texmf-dist/fonts/type1/public/stmaryrd/s
 tmary10.pfb>
-Output written on Notes.pdf (20 pages, 306639 bytes).
+Output written on Notes.pdf (22 pages, 312857 bytes).
 PDF statistics:
- 367 PDF objects out of 1000 (max. 8388607)
- 314 compressed objects within 4 object streams
- 119 named destinations out of 1000 (max. 500000)
- 85 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 390 PDF objects out of 1000 (max. 8388607)
+ 335 compressed objects within 4 object streams
+ 130 named destinations out of 1000 (max. 500000)
+ 93 words of extra memory for PDF output out of 10000 (max. 10000000)
 
