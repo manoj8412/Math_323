@@ -7,5 +7,6 @@
 \contentsline {subsection}{\numberline {2.2}Conditional Probability}{9}{subsection.2.2}% 
 \contentsline {subsection}{\numberline {2.3}Baye's Rule}{12}{subsection.2.3}% 
 \contentsline {subsection}{\numberline {2.4}Multinomial Coefficients}{15}{subsection.2.4}% 
-\contentsline {section}{\numberline {3}Discrete Random Variables}{17}{section.3}% 
-\contentsline {subsection}{\numberline {3.1}Cumulative Distribution Function}{19}{subsection.3.1}% 
+\contentsline {section}{\numberline {3}Discrete Random Variables}{18}{section.3}% 
+\contentsline {subsection}{\numberline {3.1}Cumulative Distribution Function}{20}{subsection.3.1}% 
+\contentsline {subsection}{\numberline {3.2}Expected Value}{22}{subsection.3.2}% 

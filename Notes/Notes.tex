@@ -519,12 +519,13 @@
 	\end{thm}
 	\begin{proof}
 		Let $B = \Omega$, then:
-		\vspace{-1cm}
+
 		\begin{align*}
-			B &= B \cap \left( \cup_{n \in \N^*} A_n \right) \\
-			&= \cup_{n \in \N^*} \left( B \cap A_n \right) \\
-			\therefore P(B) &= \sum_{k=1}^n P(B \cap A_k) \\
-			\therefore P(A_i \mid B) &= \frac{P(B \cap A_i)}{P(B)} \\
+			B &= B \bigcap \bigg( \bigcup_{n \in N\setminus \{0\}} A_n \bigg) \\
+			&= \bigcup_{n \in N\setminus \{0\}} \bigg( B \bigcap A_n \bigg) \\
+			\therefore P(B) &= \sum_{k=1}^n P(B \bigcap A_k) 
+			\intertext{}
+			\therefore P(A_i \mid B) &= \frac{P(B \bigcap A_i)}{P(B)} \\
 			&= \frac{P(B \mid A_i) P(A_i)}{P(B)}
 		\end{align*}
 	\end{proof}
@@ -825,11 +826,11 @@
 	\begin{defn}
 		Let $X$ be a discrete random variable on a sample space $\Omega$, and let $P$ be the probability on $\mathcal{P}(\Omega)$. The \textbf{probability function} of $X$ is the function denoted $P_X: \R \to [0,1]$ such that
 		\vfill
-		$$ P_X(X) = \underline{P}(X=x)$$
+		$$ P_X(X) = \underline{P}(X=t)$$
 		\pagebreak
 		\begin{rem}
-			$\{X=x\}$ is an event such that $X^{-1} (\{ x\})$. For a discrete random variable, if $x \notin X(\Omega)$, then $\{X=x\} = \varnothing$, meaning that $P_X(X)=0$. If $x \in X(\Omega)$, then we have that
-			$$ P_X(x) = \sum_{X(\Omega) = x} P(\{\omega\})$$
+			$\{X=t\}$ is an event such that $X^{-1} (\{ t\})$. For a discrete random variable, if $t \notin X(\Omega)$, then $\{X=t\} = \varnothing$, meaning that $P_X(X)=0$. If $t \in X(\Omega)$, then we have that
+			$$ P_X(t) = \sum_{X(\Omega) = t} P(\{\omega\})$$
 		\end{rem}
 	\end{defn}
 	\begin{exmp}
@@ -839,7 +840,7 @@
 			\begin{table}[h]
 				\begin{tabular}{c|c|c|}
 					Credits  & -5        & 10        \\ \hline
-					$P_X(x)$ & $\frac12$ & $\frac12$
+					$P_X(t)$ & $\frac12$ & $\frac12$
 				\end{tabular}
 			\end{table}
 		
@@ -890,28 +891,28 @@
 	Let $X$ be a random variable (discrete or not). The \textbf{cumulative distribution function} of $X$ is the function:
 	$$ F_X = \begin{cases}
 	R \to [0,1] \\
-	x \mapsto P \big( \{ x_1 \leq x_2 \} \big)
+	x \mapsto P \big( \{ t_1 \leq t_2 \} \big)
 	\end{cases}$$
 	It has the following properties:
 	\begin{multicols}{2}
 		\begin{enumerate}[(1)]
-			\item $$\lim\limits_{x \to - \infty} F_X (x) = 0$$ $$\lim\limits_{x \to + \infty} F_X (x) = 1$$ 
-			\item $F_X$ is \emph{nondecreasing}, meaning $$x_1 \leq x_2 \implies F_X(x_1) \leq F_X(x_2)$$
-			\item $F_X$ is always right continuous, meaning $$\lim_{x \to x_0^+} F_X(x) = F_X(x_0) $$
+			\item $$\lim\limits_{t \to - \infty} F_X (t) = 0$$ $$\lim\limits_{t \to + \infty} F_X (t) = 1$$ 
+			\item $F_X$ is \emph{nondecreasing}, meaning $$t_1 \leq t_2 \implies F_X(t_1) \leq F_X(t_2)$$
+			\item $F_X$ is always right continuous, meaning $$\lim_{t \to t_0^+} F_X(t) = F_X(t_0) $$
 			\item For a discrete random variable, $F_X$ is a \emph{step-function}.
 		\end{enumerate}
 	\end{multicols}
 \end{defn}
+\pagebreak
 \begin{exmp}
 	Given the following probability table, find $F_X$.
 	\begin{table}[h]
 		\begin{tabular}{c|c|c|c}
-			x  & 0        & 1 & 2        \\ \hline
-			$P_X(x)$ & 0.1 & 0.6 & 0.3
+			t  & 0        & 1 & 2        \\ \hline
+			$P_X(t)$ & 0.1 & 0.6 & 0.3
 		\end{tabular}
 	\end{table}
 \end{exmp}
-\vfill
 \begin{sol}
 	We have the following range:
 	\begin{center}
@@ -921,9 +922,9 @@
 			\foreach \x in {0, ..., 10}
 				\draw (\x, -0.1) -- (\x, 0.1);
 			\draw 
-				(0,0) node[below=-1.6mm]{$\bullet$} node[above]{0.1} node[below]{0}
-				(5,0) node[below=-1.6mm]{$\bullet$} node[above]{0.6} node[below]{1}
-				(10,0) node[below=-1.6mm]{$\bullet$} node[above]{0.3} node[below]{2}
+				(0,0) node[below=-1.6mm]{$\bullet$} node[above=2mm]{0.1} node[below=2mm]{0}
+				(5,0) node[below=-1.6mm]{$\bullet$} node[above=2mm]{0.6} node[below=2mm]{1}
+				(10,0) node[below=-1.6mm]{$\bullet$} node[above=2mm]{0.3} node[below=2mm]{2}
 			;
 		\end{tikzpicture}
 	\end{center}
@@ -931,10 +932,10 @@
 		\begin{subfigure}{0.49\textwidth}
 			$$ 
 			F_X = \begin{cases}
-			0 & x \in (-\infty, 0) \\
-			0.1 & x \in [0, 1) \\
-			0.7 & x \in [1, 2) \\
-			1 & x \in [2, + \infty)
+			0 & t \in (-\infty, 0) \\
+			0.1 & t \in [0, 1) \\
+			0.7 & t \in [1, 2) \\
+			1 & t \in [2, + \infty)
 			\end{cases}
 			$$
 		\end{subfigure}
@@ -943,8 +944,8 @@
 			\begin{center}
 				\begin{tikzpicture}
 					% Axes
-					\draw [->, >=stealth, auto] (0,0) to (2.5, 0) node[right]{$x$} ;
-					\draw [->, >=stealth, auto] (0,0) to (0, 3) node[above]{$P_X(x)$};
+					\draw [->, >=stealth, auto] (0,0) to (2.5, 0) node[right]{$t$} ;
+					\draw [->, >=stealth, auto] (0,0) to (0, 3) node[above]{$P_X(t)$};
 					\foreach \x in {1, 2}
 						\draw (\x, -0.1) -- (\x, 0.1) node[below=2mm]{\x};
 					\foreach \x in {0.2, 1.4, 2}
@@ -962,6 +963,167 @@
 			\end{center}
 		\end{subfigure}
 	\end{figure}
-	
+	\begin{rem}
+		For a discrete random variable, we have that $$ P_X (t) = 0 \iff F_X \text{ is continuous at }t $$ $$F_X (t) \text{ is discontinuous at } t_0 \iff P_X (t_0) = F_X (t_0) - \lim_{t \to t_0 -} F_X (t) $$
+	\end{rem}
 \end{sol}
+	We will now list properties for the probability function. Let $X$ be a random variable, and $P_X$ its probability function.
+	\begin{enumerate}[$\quad\quad$(1)] 
+		\item $P_X (t) \in [0,1] \quad \forall x \in \R$ 
+		\item $\{ x \in \R: P(t) \neq 0 \}$ is discrete.
+		\item $\sum_t P(t) =1$  (this is the sum for $x \in \{ t \in \R: P_X (t) \neq 0 \}$, which can be finite or an infinite series)
+	\end{enumerate}
+	\begin{prop}
+		Let $P : \R \to [0,1]$ be a function such that
+		\begin{enumerate}[$\quad\quad$(1)]
+			\item $\{ t \in \R: P(t) \neq 0 \}$ is discrete.
+			\item $\sum_t P(t) = 1 $
+		\end{enumerate}
+		Then there exists a discrete random variable $X$ such that $P$ is the probability function of $X$:
+		$$ P=P_X$$
+	\end{prop}
+	\begin{exmp}
+		Let $P$ be a function such that
+		$$ P(t) = 
+		\begin{cases}
+		0 & t \leq 0 \in \Z \\
+		\frac{k}{4t^2 + 2t} & t\in \N^* = \N \setminus \{0\}
+		\end{cases}
+		$$
+		Find $k$ such that the function $P$ is the probability function of some random variable $X$.
+	\end{exmp}
+	\begin{sol}
+		It is enough to find $k > 0$ such that 
+		$$ \sum_{n=1}^{+\infty} \frac{k}{4n^2 + 2n} = 1$$
+		Thus:
+		\begin{align*}
+			k&= \frac{1}{\sum_{n=1}^{+\infty} 4n^2 + 2n}  \\
+			&= \sum_{n=1}^{+\infty} \left( \frac{1}{2n} - \frac{1}{2n+1}\right) \\
+			&= \frac{1}{2} - \frac{1}{3} + \frac{1}{4} - \frac{1}{5}
+		\end{align*}
+	\end{sol}
+
+\subsection{Expected Value}
+	\begin{defn}
+		Let $X$ be a random variable, and $P_X$ be its probability function. The \textbf{expected value} of $X$ (if it exists) is defined as:
+		$$ \E(X)=\sum_t tP_X (t)$$
+	\end{defn}
+	\begin{rem}
+		The expected value of $X$ is well-defined if $ \sum_t |t| P_X(t)$ is a convergent infinite series or is finite.
+	\end{rem}
+	\begin{exmp}
+		Consider the following probability table:
+		\begin{table}[h]
+			\begin{tabular}{c|c|c|c}
+				t & 0        & 1 & 2        \\ \hline
+				$P_X(t)$ & 0.1 & 0.6 & 0.3
+			\end{tabular}
+		\end{table}
+		Then the expected value $\E(X)$ is:
+		\begin{align*}
+			\E(X) &= \sum_t tP_X(t) \\
+			&= 0 \times 0.1 + 1\times 0.6 + 2 \times 0.3 \\
+			&= 1.2
+		\end{align*}
+	\end{exmp}
+	\begin{exmp}
+		Let $X$ be a discrete random variable such that 
+		$$ P_X =
+			\begin{cases}
+				0 & n \in \N \setminus \{0\} \\
+				\frac{k}{n^2 + n} & n \in \N
+			\end{cases}
+		$$
+		Then:
+		\begin{align*}
+			k= \frac{1}{\sum_{n=1}^{\infty} \frac{1}{n^2 + n}} &\implies \sum_{n=1}^N \left[\frac{1}{n} -\frac{1}{n+1} \right] = 1 - \frac12 + \frac12 - \frac13 + \dots - \frac{1}{N+1} \\
+			&\implies \sum_t |t| P_X(t) = \sum_{n=1}^\infty \frac{1}{n+1} \text{ diverges}
+ 		\end{align*}
+ 		$$ \therefore \E(X) \text{ is not defined. }$$
+	\end{exmp}
+	\begin{prop} \label{prop:3.2}
+		Let $X$ be a discrete random variable, and $P_X$ its probability function. Let $g: \R \to \R$ be a function, and $Y= g \circ X = g(X)$. Then $Y$ is a discrete random variable as well.
+		\begin{figure}[h]
+			\begin{tikzpicture}
+				\draw (0,0) ellipse (1cm and 2cm) 
+					node[above=1cm, left=1cm]{\Large$\Omega$}
+				;
+				\draw
+				 	(2, -2) -- (3, 2) node[below=3.2cm]{\Large$\R$}
+				;
+				\draw
+					(4, -2) -- (5, 2) node[below=3.2cm]{\Large$\R$}
+				;
+				\draw 
+					[->,  >=stealth, auto ] (0,0) to [out=20, in = 160] (2.5, 0) node[above=5mm, left=8mm]{$X$} ;
+				\draw 
+					[->,  >=stealth, auto ] (2.5,0) to [out=20, in = 160] (4.5, 0) node[above=5mm, left=8mm]{$g$} ;
+			\end{tikzpicture}
+		\end{figure}
+	\end{prop}
+	\begin{cor}
+		$$ \E(Y) = \E \big( g(X) \big) = \sum_t g(t) P_X (t)$$
+	\end{cor}
+	\begin{exmp}
+		Consider the following probability table:
+		\begin{table}[h]
+			\begin{tabular}{c|c|c|c}
+				t & 0        & 1 & 2        \\ \hline
+				$P_X(t)$ & $\frac12$ & $\frac13$ & $\frac23$
+			\end{tabular}
+		\end{table}
+	\end{exmp}
+	Set $g(X) = X^2 = Y$, so the probability table becomes:
+	\begin{table}[h]
+		\begin{tabular}{c|c|c}
+			s & 0        & 4        \\ \hline
+			$P_X(s)$ & $\frac12$ & $\frac12$
+		\end{tabular}
+	\end{table}
+	By proposition (\ref{prop:3.2}) we have that
+	\begin{align*}
+		\E(Y) &= \E(X^2) \\
+		&= \sum_t t^2 P_X (t) \\
+		&= (-2)^2 + 0^2 \cdot \frac12 + (2)^2 \cdot \frac13 \\
+		&= 4 \left( \frac16 + \frac13 \right) \\
+		&= 2
+	\end{align*}
+	
+	Recall that if $X$ is a discrete random variable, then $X$ is uniquely defined by its probability function:
+	$$ \E \big( f(t_0) \big) = \sum_{t_0} f(t_0) P_X (t_0)$$
+	
+	We now present some properties of the expected value:
+	\begin{enumerate}[$\quad\quad$(1)]
+		\item If $f: \R \to \R$ is a function such that $f(t_0) = k \quad \forall t_0 \in \R$ ($k$ is a constant), then$$ \big( f(X) \big) = \E(k) = k$$
+		\item Let $f, g$ be 2 functions. Then
+		$$ \E \big( f(X) +g(X) \big) = \E \big( f(X) \big) + \E \big( g(X)\big)$$
+		\item For $\alpha \in \R$,
+		$$ \E \big( a f(X) \big) = \alpha \E\big( f(x)\big)$$
+	\end{enumerate}
+	\begin{proof}
+		\emph{Left as an exercise to the reader.}
+	\end{proof}
+	\begin{defn}
+		Let $X$ be a random variable, and let $\mu_X = \E (X)$. The \textbf{variance} of $X$ is defined as
+		$$ \V = \E \left[(X - \mu_X)^2\right]$$
+	\end{defn}
+	\begin{exmp}
+		Consider the following probability table:
+		\begin{table}[h]
+			\begin{tabular}{c|c|c|c}
+				t & 0        & 1 & 2        \\ \hline
+				$P_X(t)$ & $0.1$ & $0.6$ & $0.3$
+			\end{tabular}
+		\end{table}
+	
+		Here, $\mu_X = (0)(0.1) + (1)(0.6)+(2)(0.3) = 1.2$, and so:
+		\begin{align*}
+			\V(X) &= \E \left[(X - \mu_X)^2\right] \\
+			&= \E \left[ (X -1.2)^2 \right] \\
+			&= \sum_{t_0} (t_0 - 1.2)^2 P_X(t_0) \\
+			&= (1.2)^2 (0.1) + (0.2)^2 (0.6) + (0.8)^2 (0.3) \\
+			&= 0.36
+		\end{align*}
+	
+	\end{exmp}
 \end{document}      
