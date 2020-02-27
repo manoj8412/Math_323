@@ -69,7 +69,7 @@
 		$$ A^c = \{ n \in \N : n \text{ is odd}\}$$
 	\end{exmp}
 \pagebreak
-\subsubsection{Properties of Sets}
+Here are some important set properties:
 	\begin{multicols}{2}
 		\begin{itemize}
 			\item $A \cap \varnothing = \varnothing$
@@ -1102,11 +1102,14 @@
 	\end{enumerate}
 	\begin{proof}
 		\emph{Left as an exercise to the reader.}
+		5
 	\end{proof}
+\vspace{2cm}
 	\begin{defn}
 		Let $X$ be a random variable, and let $\mu_X = \E (X)$. The \textbf{variance} of $X$ is defined as
 		$$ \V = \E \left[(X - \mu_X)^2\right]$$
 	\end{defn}
+\pagebreak
 	\begin{exmp}
 		Consider the following probability table:
 		\begin{table}[h]
@@ -1124,6 +1127,370 @@
 			&= (1.2)^2 (0.1) + (0.2)^2 (0.6) + (0.8)^2 (0.3) \\
 			&= 0.36
 		\end{align*}
-	
 	\end{exmp}
+	\begin{prop}
+		$$ \V(X) = \E(X^2) - \big( \E(X) \big)^2$$
+	\end{prop}
+	\begin{proof}
+		\begin{align*}
+			\V(X) &= \E \big( (X-\mu_X)^2 \big) \\
+			&= \E \left[ X^2 - 2 \mu_X X + \mu_X^2 \right] \\
+			&= \E (X^2) - 2 \mu_X \E(X) + \E(\mu_X^2) \\
+			&= \E(X^2) - 2 \mu_X^2 + \mu_X^2 \\
+			&= \E (X^2) - \big( \E(X) \big)^2
+		\end{align*}
+	\end{proof}
+	\begin{exmp}
+		\begin{align*}
+			\E(X^2) &= (0)^2 (0.1) + (1)^2 (0.6)  + (2)^2 (0.3) \\
+			&= (0.6) + (1.2) \\
+			&= 1.8\\
+			\therefore \V(X) &= 1.8 - (1.2)^2 \\
+			&= 0.36
+		\end{align*}
+	\end{exmp}
+\pagebreak
+	\begin{exe}
+		\textbf{Discrete Uniform Distribution} \\
+		Let $k$ be a fixed positive number. Let $t_1, t_2, \dots, t_k \in \R$ be a uniform discrete distribution, with support $\{X_1, X_2,  \dots, X_k\}$, where $X_i$ is a random variable with a probability function:
+		$$ P_{X_i} (t_0) = 
+			\begin{cases}
+			\frac{1}{k} & t_0 \in \{t_1, t_2, \dots, t_k \} \\
+			0 & t_0 \notin \{t_1, t_2, \dots, t_k \}
+			\end{cases}
+		$$
+		Prove that 
+		\begin{enumerate}[$\quad\quad$(1)]
+			\item$ \E(X) = \bar{t_0} = \frac{1}{k} \sum_{i=1}^{k}({t_0})_i$ 
+			\item $\V(X) = \frac{1}{k} \sum_{i=1}^k \big( (t_0)_i - \bar{t_0} \big)^2$
+		\end{enumerate}
+	\end{exe}
+	Here are some properties for the variance $\V(X)$:
+	\begin{enumerate}[$\quad\quad$(1)]
+		\item $\V (X + \beta) = \V (X)$ 
+		\item $\V (\alpha X)  = \alpha^2 \V(x)$
+	\end{enumerate}
+\subsection{Types of Discrete Random Variables}
+	\subsubsection{Bernoulli Random Variables}
+	We consider an experiment with two outcomes, such as a coin toss with may not be fair. Let $\Omega = \{H,T\}$  such that $$P(H) = p \in (0,1)$$ without loss of generality. Then, define a discrete random variable $X$ such that $X(H) = 1$ and $X(T) = 0$. Then, the probability of $X$ is given by the following probability table:
+	\begin{table}[h]
+		\begin{tabular}{c|c|c}
+			$X$ & 1      & 0     \\ \hline
+			$P_X(t)$ & $p$ & $1-p$
+		\end{tabular}
+	\end{table}
+
+	Thus, $X$ has a \textbf{Bernoulli Distribution}, with parameter $p$ such that
+	$$ X \sim \text{Ber}(p)$$ 
+	\begin{exe}
+		Show that if $X \sim \text{Ber}(p)$, then $Y = 1- X \sim \text{Ber}(1-p)$.
+	\end{exe}
+	\begin{exe}
+		Consider a random variable $X$ with a probability function with $a,b \in \R$ fixed such that the following probability table holds:
+		\begin{table}[h]
+			\begin{tabular}{c|c|c}
+				$X^*$ & a     & b     \\ \hline
+				$P_X(X^*)$ & $p$ & $1-p$
+			\end{tabular}
+		\end{table}
+	
+		Show that $Y = \frac{X-b}{a-b} \sim \text{Ber}(p)$ where $X = (a-b) Y + b$ and $Y \sim Ber(p)$.
+	\end{exe}
+\pagebreak
+	\begin{prop}
+		Let a discrete random variable be $X \sim \text{Ber}(p)$, then:
+		\begin{enumerate}[$\quad\quad$(1)]
+			\item $\E(X) = p$ 
+			\item $\V(X) = p(1-p)$
+		\end{enumerate}
+	\end{prop}
+	\begin{proof}
+		\begin{enumerate}[$\quad\quad$(1)]
+			\item $\E(X) = 1(p) + 0 (1-p) = p$ 
+			\item $\E(X^2) = 1(p)+0(1-p) = p  \implies \V (X) = p - p^2 = p(1-p)$
+		\end{enumerate}
+	\end{proof}
+	\begin{rem}
+		\begin{align*}
+			\E(X) &= \E \big( (a-b Y + b) \big) \\
+			&= (a-b) \E(Y) +b \\
+			&= (a-b) p +b \\
+			\V(X) &= \V\big( (a-b) Y +b \big) \\
+			&= V \big( (a-b) Y \big) \\
+			&= (a-b)^2 \V(Y) \\
+			&= (a-b)^2 p (1-p)
+ 		\end{align*}
+	\end{rem}
+	\subsubsection{Binomial Distribution}
+		Assume that e have a Bernoulli trial experiment with two possible events $A$ and $B$. Here:
+		\begin{align*}
+			P(A) &= p \in (0,1) \\
+			P(B) &= 1-p
+		\end{align*}
+		We repeat the trial experiment $k\in \N$ times, and let $X = \{1, 2, \dots, k\}$ be the number of events $A$ observed. The random variable $X$ is then said to have a \textbf{Binomial distribution} with parameters $k, p$, denoted:
+		$$ X \sim \text{Bin}(k, p)$$
+		\begin{prop}
+			For a Bernoulli trial with $k\in \N$ repetitions such that $n \in \N \setminus (k, \infty)$ and \\$P(A) = p \in (0,1)$:
+			$$ P_X(X=n) = C_n^k p^n (1-p)^{k-n}$$
+		\end{prop}
+		\begin{proof}
+			We start by assuming that the trials are independent from each other. Then,
+			\begin{align*}
+				P_X(0) &= P(X=0)  \\
+				&= P(\underbrace{B B B \dots B}_{k \text{ times}})  \\
+				&= (1-p)^k \\
+				P_X(1) &= P(X=1) \\
+				&= P\big( (A\underbrace{BB\dots B}_{k-1 \text{ times}})  \cap (BA\underbrace{B\dots B}_{k-2 \text{ times}}) \cap \dots \cap (\underbrace{BB\dots B}_{k-1 \text{ times}}A)\big) \\
+				&= k p (1-p)^{k-1} \\
+				P_X(2) &= P(X=2) \\
+				&= P\big( (AA\underbrace{B\dots B}_{k-2 \text{ times}})  \cap (BAA\underbrace{B\dots B}_{k-3 \text{ times}}) \cap \dots \cap (\underbrace{B\dots B}_{k-2 \text{ times}}AA)\big) \\
+				&= C_2^k p^2 (1-p)^{k-2}\\
+				&\,\, \, \vdots\\
+				P_X(n) &= P(X=n)  \\
+				&= C_n^k p^n (1-p)^{k-n}
+ 			\end{align*}
+		\end{proof}
+		\begin{prop}
+			If $X \sim \text{Bin}(k, p)$ then
+			\begin{enumerate}[$\quad \quad$ (1)]
+				\item $\E (X) = kp  $
+				\item $\V(X) = kp (1-p)$
+			\end{enumerate}
+			\begin{proof}
+				\begin{enumerate}[$\quad\quad$(1)] 
+					\item 
+						\begin{align*}
+							\E(X) &= \sum_{m=1}^k  m P_X (m) \\
+							&= \sum_{m=1}^k m C_m^k p^m (1-p)^{k-m} \\
+						\intertext{Recall that $x C_x^{y} =x \frac{y!}{x!(y-k)!} = y C_{x-1}^{y-1}$, so }
+							E(X) &= \sum_{m=1}^k C_{m-1}^{k-1} p^m (1-p)^{k-m} \\
+							&= k \sum_{\ell = 0}^k-1 C_\ell^{k-1} p^{\ell + 1} (1-p)^{k-1-\ell} \\
+							&= k p \sum_{\ell = 0}^{k-1} C_\ell^{k-1} p^\ell (1-p)^{(k-1)-\ell} \\
+							&= kp \big( p + (1-p) \big)^{k-1} \\
+							&= kp
+						\end{align*}
+					\item Remark that $X^2 = X(X-1)+X$. Thus, 
+					\begin{align*}
+						\V(X) &= \E(X^2) - (kp)^2 \\
+						&= E \big( X(X-1) \big) + kp - k^2 p^2 \\
+						\therefore E \big( X (X-1)\big) &= \sum_{m=0}^k m(m-1) C_m^k p^m (1-p)^{k-m} \\
+						&= \sum_{m=2} m (m-1) C_m^k p ^m (1-p)^{k-m} \\
+						\therefore m (m-1) C_m^k&= m (m-1) \frac{k!}{m! (k-m)!}   \\
+						&= k(k-1) C_{m-1}^{k-2} \\
+						\therefore \E \big( X(X-1) \big) &= k(k-1) \sum_{m=2}^k C_{m-2}^{k-2} p^m (1-p)^{k-m} 
+						\intertext{Let $b = m-2$, then:}
+						 \E \big( X(X-1) \big)  &= k (k-1) \sum_{b=0}^{k-2} C_b^{k-2} p^{b+2} (1-p)^{k-2-b} \\
+						 &= k (k-1) p^2 \sum_{b=0}^{k-2} C_{b}^{k-2} p^{b} (1-p)^{k-2} \\
+						 &= k (k-1) p^2 \\
+						 \therefore \V(X) &= k(k-1)p^2 + kp - (kp)^2\\
+						 &= -kp^2 + kp\\
+						 &= kp (1-p)
+					\end{align*}
+				\end{enumerate}
+			\end{proof}
+		\end{prop}
+		\begin{exe}
+			Let $X \sim \text{Bin}(k, p)$. Find $\E(X^3)$. \\
+			({\footnotesize \emph{Hint: $X^3 = \frac{X(X-1)(X-2)}{3X^2 - 2X}$}})
+		\end{exe}
+		\begin{rem}
+			$X \sim \text{Bin}(k, p) \iff Y = k - X \sim \text{Bin} (k, 1-p) $
+		\end{rem}
+		\begin{exmp}
+			An oil firm undergoes 10 explorations. The probability of a succesful exploration is 0.1. 
+			$$ \text{cost} = 
+			\begin{cases}
+				\$20,000 &\text{Equipments} \\
+				\$ 30,000 &\text{for each succesful exploration}\\
+				\$ 15,000 &\text{for each failed exploration}
+			\end{cases}
+			$$
+			Find the mean and the  variance of the (total) cost for the firm.
+			
+			\begin{sol}
+				Set a random variable $X=$ ``number of succesful explorations" such that $X \sim $Bin$(10,0.1)$. Let $Y=$cost$_{\text{Tot}}$. Then:
+				\begin{align*}
+					Y &= 2(10^4) + 3(10^4) + 15(10^3) (10-X) \\
+					&= 15,000X + 170,000 \\
+					\therefore \E(Y) &= 15,000 \E(X) + 170,000 \\
+					&= 15,000 kp + 170,000 \\
+					&= 185,000 \quad (kp=1)\\
+					\therefore \V(Y) &= \big(15(10^3)\big)^2 \V (X)\\
+					&= 225(10^6) kp (1-p) \\
+					&= 2025 (10^5) \\
+				\end{align*}
+				\begin{note}Variance refers to the \emph{spread} of the data given.
+				\end{note}
+			\end{sol}
+		\end{exmp}
+	\pagebreak
+	\subsubsection{Geometric Distribution}
+	Recall the \emph{Geometric series:} 
+	$$ \sum_{k=0}^\infty x^k = \frac{1}{1-x} \quad \forall |x| <1$$
+	Consider a Bernoulli trial. We have two events, $A$ with probability $P(A)=p$, and $B$ with probability $P(B)= 1-p$. We repeat the trial until the \emph{first} instance of $A$ occurs.
+	
+	\begin{exmp}
+		Roll a die unil 2 appears. Let $X =$ `` Number of trials until success (assuming that trials are independent).
+		$$ X = \{ 1,2,3, \dots\} = \N^* = \N\setminus \{0\} $$
+		The probability function of $X$ is 
+		\begin{align*}
+			p(k) &= P(X=k) \\
+			&= P\big( (\underbrace{BBB\dots B}_{k-1}A)\big) \\
+			&= (1-p)^{k-1} p \quad\quad  k \in \N^*
+		\end{align*}
+		$X$ is said to have a geometric distribution with parameter $p$, denoted
+		$$ X \sim \text{Geo}(p)$$
+	\end{exmp}
+	\begin{exe}
+		\textbf{Memoryless Property} \\
+		Given $k, \ell \in \N^*$ with $X \sim \text{Geo (p)}$ prove that
+		$ P (t > k + \ell : \quad > \ell) = P(X>k)$
+	\end{exe}
+	\begin{exmp}
+		Consider
+		\begin{align*}
+			P(X > n_0) &= P(X=n_0+1) +P(X=n_0 + 2)+ \dots\\ 
+			&= \sum_{k=n_0+1}^\infty P(X=k) \\
+			&= \sum_{k=n_0 + 1}^\infty (1-p)^{k-1}p \\
+			&= p \sum_{k=n_0 +1}^\infty (1-p)^{k-1}\\
+			&= p \sum_{\ell =n_0}^\infty (1-p)^\ell
+		\intertext{Let $\ell = k-1$,}
+		P(X > n_0) &= p(1-p)^{n_0} \sum_{\ell = n_0}^\infty (1-p)^{\ell - n_0} 
+		\intertext{Let $m = \ell - n_0$,}
+		&= p(1-p)^{n_0} \sum_{m=0}^\infty (1-p)^m\\
+		&= (1-p)^{n_0}
+		\end{align*}
+		The cumulative distribution function of $X$ is 
+		\begin{align*}
+			F_X (n_0) &= P(X \leq n_0) \\
+			&= 1- P(X > n_0) \\
+			&= 1- (1-p)^{n_0} 
+		\end{align*}
+	\end{exmp}
+	\begin{prop}
+		Assume that we have $X \sim $Geo$(p)$, then:
+		\begin{enumerate}[$\quad\quad$(1)]
+			\item $\E(X) = \frac{1}{p} $
+			\item $\V (X) = \frac{1}{p}\left( \frac{1}{p} - 1 \right)$
+		\end{enumerate}
+	\end{prop}
+	\begin{proof}
+		Recall that 
+		$$ \forall |x| < 1 : \quad \frac{1}{1-x}= \sum_{k=0}^\infty x^k \quad \implies $$
+		Thus, 
+		\begin{align*}
+			\E(X) &= \sum_{k=1}^\infty k P (X= k) \\
+			&= \sum_{k=1}^\infty k (1-p)^{k-1}p \\
+			&= p \frac{1}{\big(1- (1-p) \big)^2} \\
+			&= \frac{p}{p^2} \\
+			&= \frac1p
+		\end{align*}
+		Now 
+		\begin{align*}
+			\V(X) &= \E(X^2) - \frac{1}{p^2}  			
+			\intertext{Recall that $\E(X^2) = \sum_{k=1}^\infty k^2 (1-p)^{k-1}p $ and $X^2 = X(X-1)+X$, so } 
+			\V(X) &= E\big( X(X-1) \big) + \frac1p - \frac{1}{p^2} 
+			\intertext{Remark that}
+			\E\big(X(X-1) \big) &= \sum_{k=2}^\infty k (k-1) (1-p)^{k-1} p\\
+			&= \frac{2(1-p)}{p^2} \\
+			\therefore \V(X) &= \frac{2}{p^2} - \frac{2}{p} + \frac{1}{p} - \frac{1}{p^2} \\
+			&= \frac{1}{p^2} - \frac{1}{p} \\
+			&= \frac{1}{p} \left( \frac{1}{p} -1\right)
+		\end{align*}
+	\end{proof}
+	
+	\subsubsection{Hypergeometric Distribution}
+	Consider a sample space $\Omega$ of population $\omega$ with a subset $S \subset \Omega$ of size $\sigma$. We take a random sample of size $m$ and let $X$ be the number of subjects from the subset $S$ included in the random sample.
+	
+	\begin{exmp}
+		An urn contains 6 red balls, and 4 blue balls. We select a random sample of 7 balls. Let $X = $``number of blue balls in the sample" such that $\omega=10$, $\sigma = 4$, and $m = 7$. Thus,  $\omega - \sigma = 6$.  
+		\begin{note}
+			$X \leq \sigma$ and $X \leq m$, meaning that $	X \leq \min(m, \sigma)$. Also, 
+			$$ (m - X \leq m) \bigcap (m-X \leq \omega - \sigma ) \implies m \geq \max(0, m+\sigma - \omega)$$
+		\end{note}
+		Thus, $X$ is a random integer such that 
+		$$ \max(0, m + \sigma - \omega) \leq X\leq \min (m, \sigma)$$
+		The probability function of $X$ is found by letting $k \in \Z$ such that
+		$$ \max(0, m + \sigma - \omega) \leq k\leq \min (m, \sigma)$$
+		Thus:
+		\begin{align*}
+			P_X (k) &= P(X = k) \\
+			&= \frac{C_k^\sigma C_{m-k}^{\omega - \sigma}}{C_m^\omega}
+		\end{align*}
+		$X$ is said to have a \textbf{hypergeometric distribution} with parameters $\omega, m, \sigma$ and denoted:
+		$$ X \sim \text{HyGeo}(\omega, m, \sigma)$$
+	\end{exmp}
+	\begin{prop}
+		If $X \sim $HyGeo$(\omega, m, \sigma)$, then
+		\begin{enumerate}[$\quad\quad$(1)]
+			\item $\E(X) = m \frac{\sigma}{\omega}$ 
+			\item $\V(X) = m \left( \frac{\sigma}{\omega}\right) \left(1- \frac{\sigma}{\omega}\right)\big( \frac{\omega-m}{\omega-1} \big) $
+		\end{enumerate}
+	\end{prop}
+	\subsubsection{Poisson Distribution}
+		Recall that 
+		$$ e^x = \sum_{n=0}^\infty \frac{x^n}{n!} \quad\quad \forall x \in \R$$
+		We will come up with a probability function $P(X)$ such that 
+		\begin{enumerate}[$\quad\quad$(1)]
+			\item $0 \leq P(X) \leq 1$ $\quad \forall X$
+			\item $\sum_{\omega \in \Omega} P(\omega) \in 1$
+		\end{enumerate}
+		Thus, we define:
+		$$ P(\omega) = 
+			\begin{cases}
+				0	&\quad	\omega \notin \N \\
+				e^{-t}\left( \frac{t^\omega}{\omega!} \right)&\quad \omega \in \N
+			\end{cases}
+		$$
+		Note that $0\leq P(X) \leq 1 \quad \forall  X$ , the set $\{ t \in \R: P(t) \neq 0\}$ is discrete, and $$\sum_t P(t) = 1$$
+		Therefore, $P$ is the probability function of some discrete random variable $X$ which is said to have a \textbf{Poisson distribution} with a parameter $t$, denoted
+		$$ X \sim \text{Poisson(t)}$$
+		For the next two examples, assume a discrete random variable $X\sim$Poisson$(t=3.2)$, where $X$ represents the number of calls required at a call center during a given day. 
+	\pagebreak
+		\begin{exmp}
+			What is the probability that the call center receives more than 2 calls?
+			\begin{sol}
+				\begin{align*}
+					P(X > 2) &= 1 - P(X \leq 2) \\
+					&= 1 - \big( P(0) + P(1) + P(2) \big) \\
+					&= 1 - \left( e^{-t} \left( \frac{t^0}{0!} + \frac{t^1}{1!} + \frac{t^2}{2!} \right) \right)
+				\end{align*}
+			\end{sol}
+		\end{exmp}
+		\begin{exmp}
+			What is the most likely number of calls received?\\
+			(i.e. for which $n$ in $P(n) = e^{-t} \frac{t^n}{n!}$ is maximal. We measure)
+			$$ \frac{P(n+1)}{P(n)} = \frac{t}{n+1}$$
+			Thus, 
+			\begin{align*}
+				\frac{t}{n+1} \geq 1 &\iff n+1 < t \\
+				&\iff n < t-1 = 2.2 \\
+				\frac{t}{n+1} < 1 &\iff n > 2.2 
+			\end{align*}
+			Thus, the maximal value is $n=3$ such that $P(3)=e^{-t} \frac{t^3}{3!}$
+			\begin{figure}[h]
+				\begin{tikzpicture}
+					% Axes
+					\draw [->, >=stealth] (0,0) to (0,4) ;
+					\draw [->, >=stealth] (0,0) to (6,0) ;
+					\draw (-0.1, 3) -- (0.1, 3) node[left=2mm]{1};
+					\foreach \x in {0, ..., 5}
+						\draw (\x, -0.2) node{\x};
+					% Data
+					\draw [ultra thick] (0,0) -- (0,1.3) node{$\bullet$};
+					\draw [ultra thick] (1,0) -- (1,1.8) node{$\bullet$};
+					\draw [ultra thick] (2,0) -- (2,2.6) node{$\bullet$};
+					\draw [ultra thick] (3,0) -- (3,3) node{$\bullet$};
+					\draw [ultra thick] (4,0) -- (4,2.7) node{$\bullet$};
+					\draw [ultra thick] (5,0) -- (5,2.4) node{$\bullet$};
+				\end{tikzpicture}
+			\end{figure}
+		\end{exmp}
+		\begin{exe}
+			Let $X_n$  for $n=1,2$ be the number of cars going through the entrance $n$ in a parking lot on any given day. Assume that $X_1$ and $X_2$ are independent such that the events $\{X_1 = k\}$ and $\{X_2 = \ell\}$ are independent $\forall k, \ell$. Prove that
+			$$ X_i \sim \text{Poisson}(t_i), \quad i =1,2 \implies X = X_1 + X_2$$
+		\end{exe}
+		\begin{sol}
+			content...
+		\end{sol}
 \end{document}      
