@@ -1534,14 +1534,14 @@ Here are some important set properties:
 \subsection{Moment Generating Function}
 	\begin{defn}
 		Given a random variable $X$, a \textbf{moment generating function} of $X$ is the function defined as
-		$$ m_X (t) = \E (e^{tk})$$
+		$$ m_X (t) = \E (e^{tX})$$
 		More precisely, for  discrete random variable we have
-		$$ m_X (t) = \sum_{k} e^{tk} P_X (k)$$
+		$$ m_X (t) = \sum_{X} e^{tX} P_X (k)$$
 		Here are some of its properties:
 		\begin{enumerate}[$\quad \quad$(1)]
 			\item $m_X$ is always defined for $t=0$:
 			\begin{align*}
-					m_X(0) &= \E \left( e^{0k} \right) \\
+					m_X(0) &= \E \left( e^{0X} \right) \\
 					&= \E (1) \\
 					&= 1
 			\end{align*}
@@ -1558,5 +1558,75 @@ Here are some important set properties:
 				$P_X(X^*)$ & $0.1$ & $0.6$ &$0.3$
 			\end{tabular}
 		\end{table}
+	
+		The moment generating function $mgf$ of $X$ is
+		\begin{align*}
+			m_X (t) &= \E (e^{tX}) \\
+			&= \sum_X e^{tX} p_X (X) \\
+			&= 0.1(e^{t0}) + 0.6(e^{t1}) + 0.3(e^{t2})  \quad \forall t \in \R\\
+ 		\end{align*}
+ 	\end{exmp}
+ 	\begin{exmp}
+ 		Consider the following probability table:
+ 		\begin{table}[h]
+ 			\begin{tabular}{c|c|c|c|c}
+ 				$X$ & -5    & -2    & 0 & 4 \\ \hline
+ 				$P_X(X^*)$ & $\frac17$ & $\frac47$ &$\frac27$ & $\frac17$
+ 			\end{tabular}
+ 		\end{table}
+		\begin{align*}
+			m_X (t) &= \E (e^{tX}) \\
+			&= \E \left[ \sum_{n=0}^\infty \frac{(tX)^n}{n!} \right]\\
+			&= \E \left[ \sum_{n=0}^{\infty} X^n \frac{t^n}{n!}\right] 
+		\intertext{Treading very carefully, we have:}
+			m_X (t) &= \sum_{n=0}^\infty \frac{\E (X^n)}{n!} t^n  \quad \forall t \in \R \\
+		\end{align*}
+		Here, $m_X(t) $ is the \emph{Maclaurin Series} of $mgf$. It follows that:
+		$$ 
+			\underbrace{\E (X^n)}_{n^{th} \text{ moment  of } X} = \frac{d^n}{dt^n} (m_X(t)) \bigg|_{t=0}
+		$$
+	\end{exmp}
+	\begin{prop}
+		Let $X$ be a random variable such that the domain $D$ of the $mgf$ contains an open interval centered at 0, then
+		$$ \E (X^n) = \frac{d^n}{dt^n} \left( m_x (t) \right) \bigg|_{t=0}$$
+	\end{prop}
+	\begin{exmp}
+		Consider the following probability table:
+		\vspace{1cm}
+		\begin{table}[h]
+			\begin{tabular}{c|c|c|c}
+				$X$ & 0    & 1    & 2 \\ \hline
+				$P_X(X^*)$ & $\frac{1}{10}$ & $\frac{6}{10}$ &$\frac{3}{10}$ 
+			\end{tabular}
+		\end{table}
+	
+	Thus:
+	\begin{align*}
+		m_X (t) &= \frac{1}{10} e^{t0} + \frac{6}{10} e^{t1} + \frac{3}{10} e^{t2} \\
+		\therefore D &= \R = (-\infty, +\infty)
+		\intertext{Hence, 0 is an interior point. It follows that:}
+		\E (X^n) &= \frac{d^n}{dt^n} m_X (t) \bigg|_{t=0} \\
+		\therefore \frac{d}{dt} m_X (t) &= \frac{6}{10} e^t + \frac{6}{10} e^{2t} \\
+		\frac{d}{dt} m_X (0) &= \frac{6}{10}  + \frac{6}{10} = \frac{6}{5} = \E (X)\\
+		\frac{d^2}{dt^2} m_X (0) &= \frac{6}{10}  + 2\cdot\frac{6}{10} = \frac{9}{5} = \E (X^2) 
+	\end{align*}
+	Therefore:
+	$$ \V(X) = \E \big( X (X-1) \big) + \frac{6}{5} - \frac{9}{5}$$
+	\end{exmp}
+	We can now analytically redefine the \emph{Moment Generating Function} $mgf$ such that:
+	$ m_X (t) = \E (e^{tX})$ is defined from $(- \varepsilon, \varepsilon)$ for $\varepsilon >0$. Then, 
+	$$ \E(X^n) = \frac{d^n}{dt^n} \big( m_X(t) \big) \bigg|_{t=0}$$
+	
+	\begin{exmp}
+		\textbf{\emph{mgf} of a Binomial}\\
+		Let $X \sim$Bin$(n, p )$ such that
+		\begin{align*}
+			P(X=k) &= C_k^n p^k (1-p)^k \quad \quad \quad k = 0,1,2,\dots, n \\
+		\intertext{Thus:} 
+			m_X(t) &= \E (e^{tX}) \\
+			&= \sum_{k=0}^{n} e^{tk} C_k^n p^k (1-p)^{n-k} \\
+			&= \sum_{k=0}^{n} C_k^n (pe^t)^k (1-p)^{n-k} \\
+			&= \big( pe^t + (1-p) \big)^n \quad \forall t \in \R
+		\end{align*}
 	\end{exmp}
 \end{document}      
