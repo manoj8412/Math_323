@@ -15,3 +15,4 @@
 \contentsline {subsubsection}{\numberline {3.3.3}Geometric Distribution}{31}{subsubsection.3.3.3}% 
 \contentsline {subsubsection}{\numberline {3.3.4}Hypergeometric Distribution}{33}{subsubsection.3.3.4}% 
 \contentsline {subsubsection}{\numberline {3.3.5}Poisson Distribution}{34}{subsubsection.3.3.5}% 
+\contentsline {subsection}{\numberline {3.4}Moment Generating Function}{37}{subsection.3.4}% 

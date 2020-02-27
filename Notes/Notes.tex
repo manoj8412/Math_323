@@ -1491,6 +1491,72 @@ Here are some important set properties:
 			$$ X_i \sim \text{Poisson}(t_i), \quad i =1,2 \implies X = X_1 + X_2$$
 		\end{exe}
 		\begin{sol}
-			content...
+			Let $X \in \{ 0, 1, 2,\dots\} = \N$ with
+			\begin{align*}
+				P(0) &= P\left( X_1 =0 \bigcap X_2 = 0 \right) \\
+				&= P(X_1 = 0) \cdot P (X_2 =0) \\
+				&= e^{-t_1} \cdot e^{-t_2} \\
+				&= e^{-(t_1 + t_2)} \\
+				P(1) &= P \left[ \left( X_1 = 1 \bigcap X_2 = 0 \right) \bigcup \left( X_1 = 0 \bigcap X_2 = 1 \right) \right] \\
+				&= P\left( X_1 = 1 \cap X_2 = 0 \right) + P(X_1 = 0 \cap X_2 = 1) \\
+				&= e^{-t_1} t_1 e^{-t_2} + e^{-t_1}e^{-t_2} t_2 \\
+				&= (t_1 + t_2 )e^{- (t_1 + t_2)}
+			\end{align*}
 		\end{sol}
+		\begin{prop}
+			If $X \sim $Poisson$(t)$, then
+			\begin{enumerate}[$\quad\quad$(1)]
+				\item $\E(X) = t$ 
+				\item $\V(X) = t$
+			\end{enumerate}
+		\end{prop}
+		\begin{proof}
+			\begin{enumerate}[$\quad \quad $(1)]
+				\item \begin{align*}
+					\E(X) &= \sum_{n=0}^\infty n e^{-t} \frac{t^n}{n!} \\
+					&= \sum_{n=1}^\infty e^{-t} \frac{t^n}{(n-1)!} \\
+					&= t e^{-t} \sum_{n=1}^\infty \frac{t^{n-1}}{(n-1)!} 
+					\intertext{Let $(k= n-1)$ such that:}
+					\E(X) &= t e^{-t} \sum_{k=0}^\infty \frac{t^k}{k!} \\
+					&= t
+				\end{align*}
+				\item 
+				\begin{align*}
+					\V(X) &= \E\big(X (X-1)\big) + \E (X) - \big(\E(X)\big)^2 \\
+					&= \E \big( X (X-1) \big) + t - t^2 \\
+					&= t
+				\end{align*}
+			\end{enumerate}
+		\end{proof}
+		\begin{exe}
+			Find $\E(X^3)$
+		\end{exe}
+\subsection{Moment Generating Function}
+	\begin{defn}
+		Given a random variable $X$, a \textbf{moment generating function} of $X$ is the function defined as
+		$$ m_X (t) = \E (e^{tk})$$
+		More precisely, for  discrete random variable we have
+		$$ m_X (t) = \sum_{k} e^{tk} P_X (k)$$
+		Here are some of its properties:
+		\begin{enumerate}[$\quad \quad$(1)]
+			\item $m_X$ is always defined for $t=0$:
+			\begin{align*}
+					m_X(0) &= \E \left( e^{0k} \right) \\
+					&= \E (1) \\
+					&= 1
+			\end{align*}
+			\item The domain of $m_X$ is always an interval which contains zero.
+			\item $m_X$ is a unique identifier of a distribution:
+			$$ m_X \equiv m_Y$$
+		\end{enumerate}
+	\end{defn}
+	\begin{exmp}
+		Consider the following probability table:
+		\begin{table}[h]
+			\begin{tabular}{c|c|c|c}
+				$X$ & 0     & 1    & 2 \\ \hline
+				$P_X(X^*)$ & $0.1$ & $0.6$ &$0.3$
+			\end{tabular}
+		\end{table}
+	\end{exmp}
 \end{document}      
