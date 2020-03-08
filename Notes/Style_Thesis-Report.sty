@@ -89,7 +89,8 @@
 \newcommand{\thicktilde}[1]{\mathbf{\tilde{\text{$#1$}}}}
 \newcommand{\sbullet}[1][.5]{\mathbin{\vcenter{\hbox}{\scalebox{#1}{$\bullet$}}}}
 \providecommand{\span}{\mathrm{span}}
-
+\newcommand{\indp}{\protect\mathpalette{\protect\indP}{\perp}} % These two next lines define independence symbol using a double perpendicular symbol
+\def\indP#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
 %Plain Theorems
 \theoremstyle{plain}{
 	\newtheorem{thm}{Theorem}[section]

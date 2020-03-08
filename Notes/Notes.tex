@@ -417,9 +417,9 @@ Here are some important set properties:
 		\end{sol}
  	\end{exmp}
  \begin{thm}
- 	If $A$ and $B$ are independent ($A \perp B$), then so are $A^C$ and $B^C$. Consequently:
+ 	If $A$ and $B$ are independent ($A \indp B$), then so are $A^C$ and $B^C$. Consequently:
  	\begin{align*}
- 		A^C \perp B && B^C \perp A
+ 		A^C \indp B && B^C \indp A
  	\end{align*}
  \end{thm}
 	\begin{proof}
@@ -434,7 +434,7 @@ Here are some important set properties:
 	\end{proof}
 	\hfill
 	\begin{exmp}
-		Let $P(A) = 0.7$, $P(B)=0.8$, $A$ and $B$ are independent ($A \perp B$). Find $P(A^C \cap B^C)$.
+		Let $P(A) = 0.7$, $P(B)=0.8$, $A$ and $B$ are independent ($A \indp B$). Find $P(A^C \cap B^C)$.
 	\pagebreak
 		\begin{sol}
 			$ $
@@ -446,7 +446,7 @@ Here are some important set properties:
 		\end{sol}
 	\end{exmp}
 	\begin{exmp}
-		Let $P(A) = 0.7$, $P(B)=0.8$, $A$ and $B$ are independent ($A\perp B$). Find $P(A \cup B)$.
+		Let $P(A) = 0.7$, $P(B)=0.8$, $A$ and $B$ are independent ($A\indp B$). Find $P(A \cup B)$.
 		\begin{sol}
 			\begin{align*}
 				(A \cup B)^C &= A^C \cap B^C \\
@@ -1626,7 +1626,304 @@ Here are some important set properties:
 			m_X(t) &= \E (e^{tX}) \\
 			&= \sum_{k=0}^{n} e^{tk} C_k^n p^k (1-p)^{n-k} \\
 			&= \sum_{k=0}^{n} C_k^n (pe^t)^k (1-p)^{n-k} \\
-			&= \big( pe^t + (1-p) \big)^n \quad \forall t \in \R
+			&= \big( pe^t + (1-p) \big)^n \quad \forall t \in \R \\
+		\therefore 	\frac{d}{dt} m_X (t)&= npe^t(pe^t + (1-p))^{n-1}
 		\end{align*}
+		\begin{align*}
+		\intertext{Let $t=0$, so}
+			\frac{d}{dt}m_X (0) &= np = \E (X)
+		\intertext{Now,}
+			\frac{d^2}{dt^2} m_X (t) &= npe^t (pe^t + (1-p))^{n-1} + n(n-1)p^2 e^{2t} (pe^t + (1-p))^{n-2} \\
+			\therefore 	\frac{d^2}{dt^2} m_X (0) &= np + (n)(n-1) p^2 = \E(X^2)
+		\intertext{We may now find the variance:}
+			\V(X) &= \E(X^2) - \big(\E(X))\big)^2 \\
+			&= np + (n)(n-1) p^2 - (np)^2 \\
+			&= np + (n^2  - n)p^2 - (np)^2 \\
+			&= np - \cancel{(np)}^2 - np^2 - \cancel{(np)}^2 \\
+			&= np (1-p) \\
+		\end{align*}
+	\end{exmp}
+	\begin{exe}
+		Find $\E(X^3)$ and compare it with your previous answer. 
+	\end{exe}
+	\begin{exmp}
+		Start with a fortune $m=100$. Toss a coin such that $P(H) = p \in (0,1)$. If the result is $H$, the fortune doubles. If the result is $T$, the fortune is halved. What will be the expected fortune after $n$ tosses? Let us denote the random variables $Y$ as the fortune, and $X$ the number of $H$ after $n$ tosses. Then, 
+		\begin{align*}
+			X &\sim \text{Bin}(n, p) \\
+			Y &= m2^{X} \left( \frac{1}{2}\right)^{n-X}
+		\end{align*}
+		Hence, 
+		\vspace{1.5cm}
+		\begin{align*}
+			Y &= \frac{100}{2^n} 2^{2X} \\
+			&= \frac{100}{2^n} 4^X \\
+		\end{align*}
+		\begin{align*}
+			\therefore \E(Y) &= \frac{100}{2^n} \E(4^X) \\
+			&= \frac{100}{2^n}  \E(e^{\ln(4)X}) \\
+			&= \frac{100}{2^n} m_X (t = \ln (4)) \\
+			&= \frac{100}{2^n} (4p + 1 - p )^n  \\
+			&= \frac{100}{2^n} (3p+1)^n
+		\end{align*}
+	\end{exmp}
+	\begin{exmp}
+		\textbf{\emph{mgf} of a Geometric random variable}\\
+		Let $X \sim \text{Geometric} (p)$, and recall that $X \in \{ 1, 2, \dots\} = \N \setminus \{0\}$ . Thus,
+		\begin{align*}
+			P(X=k) &= (1-p)^{k-1} (p) \\
+			\therefore m_X (t) &= \E (e^{tX}) \\
+			&= \sum_{k=1}^\infty e^{tk} P(X=k) \\
+			&= \sum_{k=1}^{\infty} e^{tk} p(1-p)^{k-1} 
+		\intertext{Let $k=n+1$, then }
+			m_X (t)&= \sum_{n=0}^\infty e^{t (n+1)} (1-p)^n p \\
+			&= pe^t \sum_{n=0}^{+\infty} \left[ (1-p) e^t\right]^n \\
+			&= \frac{pe^t}{1-(1-p)e^t} \quad\quad (\text{if } (1-p)e^t < 1) \\
+		\end{align*}
+		Therefore, 
+		\vspace{1.5cm}
+		$$ (1-p)e^t < 1 \iff t < -\ln (1-p)$$
+		$$ \therefore t < -\ln(1-p) \iff m_X (t) = \frac{pe^t}{1-(1-p)e^t}$$
+	\end{exmp}
+\pagebreak
+	\begin{exmp}
+		\textbf{\emph{mgf} of a Poisson random variable}\\
+		Let $X \sim $ Poisson$(\lambda)$. Thus, we have that 
+		$$ P(X=k) = e^{-\lambda} \frac{\lambda^k}{k!}, \quad \quad k \in \N$$
+		\begin{align*}
+			\therefore m_X (t) &= \E \left( e^{tX} \right) \\
+			&= \sum_{k=0}^{+\infty} e^{tk} e^{-\lambda} \frac{\lambda^k}{k!}  \\
+			&= e^{-\lambda} \sum_{k=0}^{\infty} \frac{(\lambda e^t)^k}{k!} 
+		\intertext{This series converges $\forall t$, hence:}
+			m_X (t) &= e^{-\lambda} e^{\lambda e^t} \\
+			&= e^{\lambda (e^t - 1)} 
+		\end{align*}
+		So,
+		$$ m_X (t) = e^{\lambda(e^t - 1)} \quad \quad \forall t \in \R$$
+		\begin{align*}
+			\therefore \dot{m}_X(t) &= \lambda e^t e^{\lambda (e^t -1)} \\
+			\dot{m}_X (0) &= \lambda = \E (X) \\
+			\therefore \ddot{m}_X (t) &= \lambda e^t e^{\lambda (e^t - 1)} + \lambda^2 e^2t e^{\lambda (e^t -1)}\\
+			\ddot{m_X(0)} &= \lambda + \lambda^2 \\
+			&= \E(X^2)
+		\end{align*}
+		$$ \therefore \V (X) = \lambda + \lambda^2 - (\lambda)^2 = \lambda $$
+	\end{exmp}
+	\begin{exe}
+		Find $\E (X^3)$
+	\end{exe}
+	\begin{exmp}
+		The number of customers making a certain payment in a store is represented by the random variable $X$. Let $X \sim$ Poisson$(\lambda=2)$. We have the following distribution of payments per customer:
+		\begin{table}[h]
+			\begin{tabular}{|c|c|}
+				\hline
+				Customer & Payment\\ 
+				\hline 
+				$1^{st}$ & \$100.00 \\
+				$2^{nd}$ & \$50.00 \\
+				$3^{th}$ & \$25.00 \\
+				$\vdots$ & $\vdots$ \\
+				$X^{th}$ & \$100.00$\left( \frac{1}{2}\right)^{X-1}$ \\
+				\hline
+			\end{tabular}
+		\end{table}
+	
+	Therefore, 
+	\begin{align*}
+		\E (\text{Cost}) &= \E \left( 100 \left( \frac{1}{2} \right)^{X-1} \right) \\
+		&= \E \left( 50 (2 )^{-X} \right) \\
+		&= 50 \cdot \E \left( 2^{-X} \right) \\
+		&= 50 \cdot \E \left(  \left(\frac{1}{2} \right)^{X} \right) \\
+		&= 50 \cdot \E \left(  e^{-X\ln(2)}\right)
+	\end{align*}
+	Thus, the \emph{mgf} of $X$ is
+	\begin{align*}
+		m_X (t) &= e^{\lambda (e^t - 1)} \quad \forall t \in \R \\
+		&= \E (e^{tX}) \\
+		&= 50 m_X (t = -\ln(2) ) \\
+		&= 50 e^{\lambda (\frac{1}{2} - 1)} \\
+		&= 50 e^{- \frac{\lambda}{2}}  
+	\intertext{We know that $\lambda$ = 2, so}
+		&= \frac{50}{e}
+	\end{align*}
+	
+	\end{exmp}
+\pagebreak
+\section{Continuous Random Variables}
+\subsection{Chebyshev Inequality}
+	\begin{thm}
+		Let $X$ be a random variable such that $\E(X) = \mu$ and $\V(X) = \sigma^2$. Then,
+		$$ P\big( |X-\mu| \geq k \sigma \big) \leq \frac{1}{k^2} $$
+		\vspace{-0.5cm}
+		\begin{figure}[h]
+			\begin{tikzpicture}
+				\draw (-4, 0) -- (4, 0);
+				\draw (-2.5, -0.1) -- (-2.5, 0.1) node[below=2mm]{$\mu - k \sigma$} ;
+				\draw (0, -0.1) -- (0, 0.1) node[below = 2mm]{$\mu$} ;
+				\draw (2.5, -0.1) -- (2.5, 0.1) node[below = 2mm]{$\mu+ k \sigma$} ;
+				\draw [line width = 5pt, color=red!50, opacity = 0.5] (-4, 0) -- (-2.5, 0);
+				\draw [line width = 5pt, color=green!50, opacity = 0.5] (-2.5, 0) -- (2.5, 0);
+				\draw [line width = 5pt, color=red!50, opacity = 0.5] (2.5, 0) -- (4, 0);
+			\end{tikzpicture}
+		\end{figure}
+	\end{thm}
+	For instance, let $k=2$ such that 
+	$$ P\big( |X-\mu|  \geq 2 \sigma \big) \leq \frac{1}{4}$$
+	Hence, more than 75\% of the value of $X$ are within $2\sigma$ from $\mu$.
+	\begin{rem}
+		Let $A, B, C$ be events such that $A \indp B$, $B \indp C$, and $A \indp C$. Then, 
+		$$ P(A \cap B \cap C) = P(A) P(B)P(C)$$
+	\end{rem}
+	\begin{defn}
+		Recall the cumulative distribution function (\emph{cdf}) of a random variable $X$ is 
+		$$F_X (t) = P(X \leq t) $$
+		For example:
+		\begin{figure}[h]
+			\begin{subfigure}{0.45\textwidth}
+				\begin{center}
+					\begin{tikzpicture}
+						\draw [ultra thin, color=grey!30] (-3, -3) grid (3,3);
+						\draw [->] (-3, -1) -- (3, -1) node[right]{$x$} ; 
+						\draw [->] (0, -3) -- (0, 3) node[above]{$y$} ; 
+						\draw [thick] plot [smooth, tension =0.7] coordinates {(-3, -3) (-1.5, -2) (0, 2) (3, 3)};
+					\end{tikzpicture}
+					
+					\emph{A continuous function.}
+				\end{center}
+				
+			\end{subfigure}
+			\hfill
+			\begin{subfigure}{0.45\textwidth}
+				\begin{center}
+					\begin{tikzpicture}
+					\draw [ultra thin, color=grey!30] (-3, -3) grid (3,3);
+					\draw [->] (-3, -1) -- (3, -1) node[right]{$x$} ; 
+					\draw [->] (0, -3) -- (0, 3) node[above]{$y$} ; 
+					\draw [ ultra thick] (-3, -2) -- (-2.06, -2);
+					\draw (-3,-2) node[]{$\bullet$} (-2, -2) node[]{$\circ$};
+					\draw [ ultra thick] (-2, -1) -- (-1.06, -1);
+					\draw (-2,-1) node[]{$\bullet$} (-1, -1) node[]{$\circ$};
+					\draw [ ultra thick] (-1, 0) -- (-0.06, 0);
+					\draw (-1,0) node[]{$\bullet$} (0, 0) node[]{$\circ$};
+					\draw [ ultra thick] (0, 1) -- (0.94, 1);
+					\draw (0,1) node[]{$\bullet$} (1, 1) node[]{$\circ$};
+					\draw [ ultra thick] (1, 2) -- (1.94, 2);
+					\draw (1,2) node[]{$\bullet$} (2, 2) node[]{$\circ$};
+					\draw [ ultra thick] (2, 3) -- (2.94, 3);
+					\draw (2,3) node[]{$\bullet$} (3, 3) node[]{$\circ$};
+					\end{tikzpicture}
+					
+					\emph{A discrete function.}
+				\end{center}
+			\end{subfigure}
+		\end{figure}
+	
+		A \textbf{continuous random variable} $X$ is a random variable for which the $cdf$  $F_X$ is a continuous function, in addition to the fact that $F_X$ is \emph{non-decreasing}.
+		
+		\begin{figure}[h]
+			\begin{subfigure}{0.45\textwidth}
+				\begin{center}
+					\begin{tikzpicture}
+					\draw [ultra thin, color=grey!30] (-3, -3) grid (3,3);
+					\draw [->] (-3, -1) -- (3, -1) node[right]{$t$} ; 
+					\draw [->] (0, -3) -- (0, 3) node[above]{$F_X(t)$} ; 
+					\draw [thick] plot [smooth, tension =0.75] coordinates {(-3,-1)  (-1, -0.5) (1, 1.5) (3, 2)};
+					\draw [dashed] (-3, 2) -- (3, 2) ;
+					\draw [thick](-0.1, 2) -- (0.1, 2) node[right]{1};
+					\draw (-0.1, -1) -- (0.1, -1) node[right=2mm, below]{0};
+					\draw ;
+					\end{tikzpicture}
+				\end{center}
+				
+			\end{subfigure}
+			\hfill
+			\begin{subfigure}{0.45\textwidth}
+				$$ 
+					\left.
+					\begin{array}{c}
+						\lim\limits_{t \to - \infty} F_X (t) = 0 \\
+						\\
+						\lim\limits_{t \to + \infty} F_X (t) = 1 
+					\end{array}
+					\right\}
+					F_X \text{ is non-decreasing}
+				$$
+			\end{subfigure}
+		\end{figure}
+	\end{defn}
+	\begin{prop}
+		If $F_X$ is the cumulative distribution function (\emph{cdf}) of a continuous random variable $X$, then $F_X$ is differentiable everywhere, except at certain subsets of points.
+	\end{prop}
+	Let us define
+	$$ 
+		f_X (t) = \frac{d}{dt} F_X (t) = \dot{F}_X (t)
+	$$
+	We can denote the following properties for $f_X$:
+	\begin{enumerate}[$\quad\quad$(1)]
+		\item$$f_X (t) \geq 0 \quad \quad \forall t$$
+		\item \begin{align*}
+			\int_{-\infty}^{+\infty} f_X (t) dt &= \lim_{\substack{a \to - \infty \\  b \to + \infty}} \int_a^b f_X (t)dt \\
+			&= \lim_{\substack{a \to - \infty \\  b \to + \infty}} \int_a^b \dot{F}_X (t)dt \\
+			&= \lim_{\substack{a \to - \infty \\  b \to + \infty}} \left( F_X (b) -  F_X (a) \right) \\
+			&= 1-0 \\
+			&= 1
+		\end{align*}
+	\end{enumerate}
+	\begin{defn}
+		If $X$ is a continuous variable, then
+		$$ f_X (t) = \dot{F}_X (t)$$
+		is called the \textbf{probability density function} (pdf) of $X$.
+	\end{defn}
+	\begin{exmp}
+		Set $f(t) = \frac{k}{1+t^2}$ whenever $t \in \R$. For what values of $k$ is $f(t)$ the pdf of a continuous random variable?
+		\begin{sol}
+			We must have $k \geq 0$, and also
+			\begin{align*}
+				\int_{-\infty}^{+\infty} \frac{k}{1+t^2} dt &= 1\\
+				\therefore k \int_{-\infty}^{+\infty} \frac{1}{1+t^2} dt &= 1 \\
+			\end{align*}
+				$$
+				\therefore f_X (\pi) = \underbrace{ \bigg(  \frac{1}{\pi} \bigg) }_{\substack{Normalizing \\ constant}}  \cdot \quad \bigg( \underbrace{ \frac{1}{1+t^2}}_{Kernel} \bigg) \quad \quad \forall \underbrace{t \in \R}_{Support}
+				$$
+		\end{sol}
+		The above is the probability distribution function (\emph{pdf}) of the \textbf{Cauchy Distribution}. The cumulative distribution function (\emph{cdf}) of the Cauchy Distribution is
+		\begin{align*}
+			- F_X (t) &= \int_{- \infty}^{t} f_X (s) ds \\
+			&= \frac{1}{\pi} \int_{-\infty}^{t} \frac{1}{1+s^2} ds \\
+			&= \frac{1}{\pi} \arctan (t) + \frac{\pi}{2}
+		\end{align*}
+	\end{exmp}
+	\begin{exmp}
+		The following plot represents the probability distribution function (\emph{pdf}) of a continuous random variable $X$. Find $P\big(-\frac12 \leq X \leq \frac14\big)$
+		\begin{figure}[h]
+			\begin{subfigure}{0.45\textwidth}
+				\begin{center}
+					\begin{tikzpicture}
+						\draw [ultra thin, color=grey!30] (-3, -3) grid (3,3);
+						\draw [->] (-3, -1) -- (3, -1) node[right]{$t$} ; 
+						\draw [->] (0, -3) -- (0,3) node[above]{$F_X(t)$} ; 
+						\draw (-0.1, 2) -- (0.1, 2) node[right]{1};
+						\draw (-0.1, -1) -- (0.1, -1) node[left=2mm, below]{0};
+						\draw (-2, -1.1) -- (-2, -0.9) node[ below = 2mm]{-1};
+						\draw (2, -1.1) -- (2, -0.9) node[ below= 2mm]{1};
+						\draw (-1, -1.1) -- (-1, -0.9) node[below = 2mm] {$-\frac{1}{2}$};
+						\draw (0.5, -1.1) -- (0.5, -0.9) node[below = 2mm] {$\frac{1}{4}$};
+						\draw [thick] plot [smooth, tension =0] coordinates {(-3, -1) (-2, -1) (0, 2) (2, -1) (3, -1)};
+						\path [fill = blue!50, opacity =0.5] (-2,  -2) -- (2, -2) (0.5, 1.3) -- (0.5, -1) -- (-1, -1) -- (-1, 0.5) -- (0, 2);
+					\end{tikzpicture}
+				\end{center}
+			\end{subfigure}
+			\hfill
+			\begin{subfigure}{0.45 \textwidth}
+				We have
+				\begin{align*}
+					P \left( - \frac12 \leq X \leq \frac14 \right) &= P \left( X < \frac14 \right) - P \left(X < - \frac12\right) \\
+					&= F_X \left( \frac14 \right) - F_X \left( - \frac12 \right) \\
+					&= \int_{-\frac12}^{\frac14} f_X (s) ds \\
+					&= 1 - \left( \frac18 + \frac{9}{32} \right) \\
+					&= \frac{19}{32}
+				\end{align*}
+			\end{subfigure}
+		\end{figure}
+	
 	\end{exmp}
 \end{document}      
