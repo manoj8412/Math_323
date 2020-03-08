@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.2.17)  8 MAR 2020 19:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.2.17)  8 MAR 2020 19:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1452,7 +1452,7 @@ Overfull \hbox (11.43341pt too wide) detected at line 1924
 []
  []
 
-[46]
+[46] [47]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1929.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 1929.
  (./Notes.aux)
@@ -1463,8 +1463,8 @@ Package rerunfilecheck Info: File `Notes.out' has not changed.
 (rerunfilecheck)             Checksum: F25D27CEFC8727809F5561CA37A33882;1332.
  ) 
 Here is how much of TeX's memory you used:
- 34861 strings out of 492167
- 639677 string characters out of 6131558
+ 34862 strings out of 492167
+ 639684 string characters out of 6131558
  723239 words of memory out of 5000000
  38433 multiletter control sequences out of 15000+600000
  548860 words of font info for 89 fonts, out of 8000000 for 9000
@@ -1498,10 +1498,10 @@ mf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/f
 onts/type1/public/amsfonts/symbols/msbm7.pfb></usr/share/texmf-dist/fonts/type1
 /public/cm-super/sfrm1000.pfb></usr/share/texmf-dist/fonts/type1/public/stmaryr
 d/stmary10.pfb>
-Output written on Notes.pdf (48 pages, 432215 bytes).
+Output written on Notes.pdf (49 pages, 432733 bytes).
 PDF statistics:
- 698 PDF objects out of 1000 (max. 8388607)
- 609 compressed objects within 7 object streams
- 265 named destinations out of 1000 (max. 500000)
+ 703 PDF objects out of 1000 (max. 8388607)
+ 613 compressed objects within 7 object streams
+ 266 named destinations out of 1000 (max. 500000)
  165 words of extra memory for PDF output out of 10000 (max. 10000000)
 
