@@ -1,0 +1,86 @@
+\documentclass{article}
+
+\usepackage{Style_Thesis-Report}
+
+\title{Math 323
+	- Assignment 3}
+\author{Sada S\'{o}lomon, Ignacio - Id 260708051}
+\date{Winter 2020}  %Place'%' at front to activate today's date
+
+
+\begin{document}
+\clearpage\maketitle
+\thispagestyle{empty}
+\vspace{2cm}
+
+\newpage
+\setcounter{page}{1}
+\cfoot{\thepage}
+
+\pagebreak
+
+\section*{Problem 1: WMS 2.158}
+\emph{A bowl contains $w$ white balls and $b$ black balls. One ball is selected at random from the bowl, and its color is noted, and it is returned to the bowl along with $n$ additional balls of the same color. Another single ball is randomly selected from the bowl (now containing $w+b+n$ balls) and it is observed that the ball is black. Show that the (conditional) probability that the first ball selected was white is} $\frac{w}{w+b+n}$
+\begin{proof}
+	Let us denote $W$ as the event where the first ball selected at random is white, and let $B$ denote the event where the second ball selected at random is black. Then, by \textbf{Baye's Rule}
+	\begin{align*}
+		P(W \mid B) &= \frac{P (B \mid W) P (W)}{P(B \mid W) P (W) + P (B \mid W^c) P(W^c)}
+	\end{align*}
+	We now proceed to list the value of each probability to compute $P(W \mid B)$:
+	\begin{multicols}{2}
+		\begin{itemize}
+			\item $P(B \mid W)  = \frac{b}{w+b+n}$
+			\item $P (W) = \frac{w}{w+b}$
+			\item $P (B \mid W^c) = \frac{b+n}{w+b+n}$
+			\item $P (W^c) = \frac{b}{w+b}$
+		\end{itemize}
+	\end{multicols}
+	Hence,
+	\begin{align*}
+	P(W \mid B) &= \frac{\left( \frac{b}{w+b+n} \right) \left(\frac{w}{w+b}\right)}{\left( \frac{b}{w+b+n} \right) \left(\frac{w}{w+b}\right) + \left( \frac{b+n}{w+b+n} \right) \left(\frac{b}{w+b}\right)}\\
+	&= \frac{\left( \frac{\cancel{b}w}{w+b+n} \right) \cancel{\left(\frac{1}{w+b}\right)}}{\left(  \left(\frac{\cancel{b}w}{w+b+n}\right) + \left(\frac{b^{\cancel{2}}+\cancel{b}n}{w+b+n}\right) \right) \cancel{\left( \frac{1}{w+b} \right)}} \\
+	&= \frac{\left(\frac{w}{w+b+n}\right)}{\left( \frac{\cancel{w+b+n}}{\cancel{w+b+n}} \right)} \\
+	&= \frac{w}{w+b+n}
+	\end{align*}
+\end{proof}
+
+\pagebreak
+
+\section*{Problem 2: WMS 2.160}
+	\emph{A machine for producing a new experimental electronic component generates defectives from time to time in a random manner. The supervising engineer for a particular machine has noticed that defectives seem to be grouping (hence, appearing in a nonrandom order), thereby suggesting a malfunction in some part of the machine. One test for non-randomness is based on the number of \textbf{runs} of defectives and non-defectives (a run being an unbroken sequence of either defectives or non-defectives). The smaller the number of runs, the greater will be the amount of evidence indicating non-randomness. Of 12 components drawn from the machine, the first 10 were not defective, and the last two were defective: 
+	$$ (NNNNNNNNNNDD)$$  Assume randomness.}
+	\begin{enumerate}[$\quad\quad$(a)]
+		\item What is the probability of observing this arrangement (resulting in two runs) given that 10 out of 12 components are non-defective?
+		\item What is the probability of observing two runs? 
+	\end{enumerate}
+	\begin{sol}
+		\begin{enumerate}[$\quad \quad$(a)]
+			\item We have 12 components in total, where 10 are non-defective $(N)$ and 2 are defective $(D)$. We must first find the total number of possible arrangements for 2 defective . Thus:
+			$$ C_2^{12} = \frac{12!}{2!(10!)} = \frac{11\times12}{1\times2} = 66$$
+			As this specific arrangement is only once case  out of all possible cases, we have that the probability of observing this arrangement is $\frac{1}{66}$. 
+			
+			\item Knowing that the probability of the above arrangement is $\frac{1}{66}$, and also observing that a second possible arrangement with two runs is
+			$$ (DDNNNNNNNNNN)$$
+			we now simply add the probability of both to denote the probability of an arrangement with two runs, in the context of 10 non-defective and 2 defective components:
+			$$ \frac{1}{66} + \frac{1}{66} = \frac{2}{66} = \frac{1}{33}$$
+		\end{enumerate}
+	\end{sol}
+	
+	\pagebreak
+	
+	\section*{Problem 3: WMS 2.178}
+		\emph{Suppose that the probability of exposure to the flu during an epidemic is 0.6. Experience has shown that the serum is 80\% successful in preventing an inoculated person from acquiring the flu, if exposed to it. A person not inoculated faced a probability of 0.90 of acquiring the flu if exposed to it. Two persons, one inoculated and one not, perform a highly specialized task in a business. Assume that they are not at the same location, are not in contact with the same people, and cannot expose each other to the flu (they're completely independent). What is the probability that at least one of them will get the flu?}
+		
+	\begin{sol}
+		We begin by defining $A = $ ``Person is exposed to flu" and $B=$``Person gets the flu". We now consider the case where two employees, one of whom is inoculated, and the other is not. The probability that we are looking for is the probability that at least one of the two employees catches the flu. If we define $B_1= $``Employee 1 gets the flu" and $B_2=$``Employee 2 gets the flu", as well as $A_1=$``Employee 1 is exposed to the flu" and $A_2 =$``Employee 2 is exposed to the flu", then we know that
+		$$ P (B_1 \cup B_2) = 1 - P (B_1 \cup B_2)^c = 1 - P(B_1^c \cap B_2^c)$$
+		If we consider employee 1 to be inoculated while employee 2 is not, then:
+		$$ P(B_1^c)= P (B_1^c \cap A_1) + P (B_1^c \cap A_1^c) = 0.80 \cdot 0.60 + 1.00 \cdot 0.40 = 0.88 $$
+		$$ P(B_2^c) = P(B_2^c \cap A_2) + P(B_2^c \cap A_2^c) = 0.10 \cdot 0.60 + 1.00 \cdot 0.40 = 0.46 $$
+		We know that both employees and their possibilities of exposure and contracting the flu are independent of each other, thus:
+		$$ P (B_1^c \cap B_2^c) = P (B_1^c) P(B_2^c) = 0.88 \cdot 0.46 = 0.4048$$
+		$$ \therefore P(B_1 \cup B_2) = 1 - 0.4048 = 0.5952$$
+	\end{sol}
+\end{document}  
+
+	

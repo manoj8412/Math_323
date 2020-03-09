@@ -1868,6 +1868,8 @@ Here are some important set properties:
 			&= 1
 		\end{align*}
 	\end{enumerate}
+\pagebreak
+\subsection{Probability Density Function}
 	\begin{defn}
 		If $X$ is a continuous variable, then
 		$$ f_X (t) = \dot{F}_X (t)$$
@@ -1892,6 +1894,7 @@ Here are some important set properties:
 			&= \frac{1}{\pi} \arctan (t) + \frac{\pi}{2}
 		\end{align*}
 	\end{exmp}
+\pagebreak
 	\begin{exmp}
 		The following plot represents the probability distribution function (\emph{pdf}) of a continuous random variable $X$. Find $P\big(-\frac12 \leq X \leq \frac14\big)$
 		\begin{figure}[h]
@@ -1918,12 +1921,70 @@ Here are some important set properties:
 				\begin{align*}
 					P \left( - \frac12 \leq X \leq \frac14 \right) &= P \left( X < \frac14 \right) - P \left(X < - \frac12\right) \\
 					&= F_X \left( \frac14 \right) - F_X \left( - \frac12 \right) \\
-					&= \int_{-\frac12}^{\frac14} f_X (s) ds \\
+					&= \int_{-\frac12}^{\frac14} f_X (t) dt \\
 					&= 1 - \left( \frac18 + \frac{9}{32} \right) \\
 					&= \frac{19}{32}
 				\end{align*}
 			\end{subfigure}
 		\end{figure}
 	\end{exmp}
-	We will now list some properties for a \emph{pdf} $f_X (t)$ of a continuous random variable $X$ with a \emph{cdf} $F_X (t)$
+	We will now list some properties for a continuous random variable $X$ with a \emph{cdf} $F_X (t)$ and  \emph{pdf} $f_X (t)$:
+	\begin{enumerate}[$\quad \quad $ (1)]
+		\item 
+		\begin{align*}
+			P (X \geq a) &= P (X > a) \\
+			&= 1 - F_X (a) \\
+			&= \int_0^{+\infty} f_X (t) dt
+		\end{align*}
+		\item 
+		\begin{align*}
+			P (X \leq a) &= P (X < a) \\
+			&= F_X (a) \\
+			&= \int_{- \infty}^a  f_X (t) dt
+		\end{align*}
+		\item 
+		\begin{align*}
+			P (a < X < b) &= P (a \leq X < b) \\
+			&= P (a \leq X \leq b) \\
+			&= P (a < X \leq b) \\
+			&= \int_a^{+\infty} f_X (t) dt
+		\end{align*}
+	\end{enumerate}
+\pagebreak
+	\begin{prop}
+		Let $X$ be a continuous random variable, and let $f_X$ be its \emph{pdf}. Let $\alpha, \beta \in \R$ such that $\alpha \neq 0$. We set $$ Y = \alpha X + \beta$$ 
+		where $Y$ is a continuous random variable, and its \emph{pdf} is
+		$$ f_Y (u) = \frac{1}{|\alpha|} f_X \left( \frac{u - \beta}{\alpha} \right)$$
+	\end{prop}
+	\begin{proof}
+		For $\alpha >0$, the \emph{cdf} of $Y$ is
+		\begin{align*}
+			F_Y (u) &= P (Y \leq u) \\
+			&= P (\alpha X + \beta \leq u) \\
+			&= P \left( \alpha X \leq u + \beta  \right) \\
+			&= P \left( X \leq \frac{u - \beta}{\alpha} \right)
+		\end{align*}
+		Therefore:
+		$$ F_y(u) = F_X \left(  \frac{u-\beta}{\alpha}\right)$$
+		Hence, the \emph{pdf} of $Y$ is
+		\begin{align*}
+			f_Y (u) &= \frac{d}{du} F_Y (u) \\ 
+			&= \frac{1}{|\alpha|} f_X \left( \frac{u-\beta}{\alpha} \right)
+		\end{align*}
+	\end{proof}
+	\begin{defn}
+		Let $X$ be a continuous random variable and $f_X$ be the \emph{pdf}. Let $g: \R \to \R$ be a continuous function. Then, 
+		$$ \E \big( g(X) \big) = \int_{-\infty}^{\infty} g(t) f_X (t) dt$$
+	\end{defn}
+	Here we have some  properties for a \emph{functional expected value} (\textbf{Definition 4.3}):
+	\begin{enumerate}[$\quad\quad$(1)]
+		\item If $X$ is a continuous random variable and $f: \R \to \R$ is a constant function (i.e. $f(t) = k \quad \forall t \in \R$), then:  $$ \E \big( f (t) \big) = k \quad \quad \forall t \in \R$$
+		\item If $g: \R \to \R$ and  $h: \R \to \R$ are two continuous functions, then
+		$$ \E \big( h (t) + g (t) \big) = \E \big( h (t) \big) + \E \big( g(t) \big)$$
+	\end{enumerate}
+	\begin{proof}
+		\begin{enumerate}[$\quad\quad$(1)]
+			\item
+		\end{enumerate}
+	\end{proof}
 \end{document}      
