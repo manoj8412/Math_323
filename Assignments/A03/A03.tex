@@ -80,7 +80,281 @@
 		We know that both employees and their possibilities of exposure and contracting the flu are independent of each other, thus:
 		$$ P (B_1^c \cap B_2^c) = P (B_1^c) P(B_2^c) = 0.88 \cdot 0.46 = 0.4048$$
 		$$ \therefore P(B_1 \cup B_2) = 1 - 0.4048 = 0.5952$$
+		
 	\end{sol}
+\pagebreak
+	\section*{Problem 4: WMS 3.4}
+	\emph{Consider a system of water flowing through valves from point $A$ to point $B$. Valves 1, 2, and 3 operate independently, and each correctly opens on signal with a probability 0.8. Find the probability distribution for $Y$, the number of open paths from $A$ to $B$ after the signal is given. (Note that $Y$ can take on the values 0, 1, and 2). Also, find the \textbf{cdf} of $Y$.} 
+	\begin{center}
+		\begin{tikzpicture}
+		\draw (0,0) -- (1,0) -- (1, -1) -- (5, -1) -- (5, 0) -- (6,0) ;
+		\draw (1,0) -- (1,1) -- (5,1)  -- (5,0) ;
+		\draw (0,0) node[left]{$A$} (6,0) node[right]{$B$};
+		\draw 
+			[fill = white] (2, -1.15) rectangle ++ (0.3, 0.3) node[below=6mm, left=-1mm]{2}
+			[fill = white] (4, -1.15) rectangle ++ (0.3, 0.3) node[below=6mm, left=-1mm]{3}
+			[fill = white] (3, 0.85) rectangle ++ (0.3, 0.3) node[above=3mm, left=-0.85mm]{1}
+		;
+		\end{tikzpicture}
+	\end{center}
+	\begin{sol}
+		Let us define $A=$ ``Valve 1 is opened", $B=$ ``Valve 2 is opened", and $C=$ ``Valve 3 is opened".  We know that $P(Y=u) = p(u) \quad \forall  u \in \{ 0,1,2 \}$.  Thus, we must find $P(Y=0)$, $P(Y=1)$, and $P(Y=2)$, as well as $F_Y (t)$ (the \emph{cdf} of $Y$). 
+		
+		We begin with $P(Y=0)$, when no paths are open. This occurs if \textbf{valve 1 is not opened} \emph{and} \textbf{valve 2 or valve 3 are not opened.} Thus:
+		$$ P(Y=0) = P (A^C \cap (B^c \cup C^c))$$
+		Note that all valves open independently of each other, so:
+		$$ P(B^c \cup C^c) = P(B \cap C)^c = 1 - (0.8)(0.8) = 0.36$$
+		$$ P(A^c \cap (B^c\cup C^c)) = (0.2)(0.36) = 0.072$$
+		$$ \therefore P(Y=0) = 0.072 $$
+		
+		Now we solve for $P(Y=2)$, where all paths are open. This occurs if \textbf{valve 1 is opened} \emph{and} \textbf{valve 2 and valve 3 are opened}. Thus:
+		\begin{align*}
+			P(Y=2) &= P(A \cap (B \cap C))\\
+			&= P(A \cap B \cap C)\\
+			&= (0.80)(0.80)(0.80) \\
+			&= 0.512
+		\end{align*}
+		
+		Finally, knowing that $u \in \{0,1,2\}$, we can find $P(Y=1)$ easily:
+		\begin{align*}
+			P(Y=1) &= P(\Omega) - P(Y=0) - P(Y=2)\\ 
+			&= 1 - 0.072 - 0.512 \\
+			&= 0.416
+		\end{align*}
+		
+		We may now calculate the cumulative distribution function of the $Y$, considering the following:
+		\begin{table}[h]
+			\begin{tabular}{|c|c|c|c|}
+				\hline
+				$u$	&	0	&	1	&	2 \\ \hline
+				$P_Y(u)$ & 0.072 & 0.416 & 0.512 \\ \hline 
+			\end{tabular}
+		\end{table}
+	
+		Thus:
+		\begin{figure}[h]
+			\begin{subfigure}{0.46\textwidth}
+				$$F_Y (u) =  \begin{cases}
+				0 & u \in (-\infty, 0) \\
+				0.072 & u \in [0, 1) \\
+				0. 488 & u \in [1, 2) \\
+				1 & u \in [2, + \infty)
+				\end{cases}$$
+			\end{subfigure}
+			\hfill
+			\begin{subfigure}{0.46\textwidth}
+				\begin{center}
+					\begin{tikzpicture}
+						\draw [ultra thin, grey!30] (0,0) grid (2.5,2.5);
+						\draw [->] (0, 0) --  (2.5, 0) node[right]{x} ;
+						\draw [->] (0, 0) --  (0, 2.5) node[above]{y} ;
+						\foreach \x in {0,...,2}
+							\draw (\x, -0.1) -- (\x, +0.1) node[below=2mm ]{\x};
+						\foreach \y in { 0.144, 0.976, 2}
+							\draw (-0.1, \y) -- (0.1, \y);
+						\draw 
+							(0, 0.144) node [left=2mm]{0.072}
+							(0, 0.976) node[left=2mm]{0.488}
+							(0, 2) node [left=2mm]{1}
+						;
+						\draw [line width = 2pt] (0,0.144) -- (1, 0.144);
+						\draw [line width = 2pt] (1,0.976) -- (2, 0.976);
+						\draw 
+							(0,0) node[]{$\times$}
+							(0, 0.14) node[]{$\bullet$}
+							(1, 0.14) node[]{$\times$}
+							(1, 0.97) node[]{$\bullet$}
+							(2, 0.97) node[]{$\times$}
+							(2, 2)  node[]{$\bullet$}
+						;
+					\end{tikzpicture}
+				\end{center}
+			\end{subfigure}
+		\end{figure}
+		Sample code for graph (using \texttt{tikz}):
+		\begin{lstlisting}[language=tex]
+		\begin{tikzpicture}
+		% Grid and axes
+		\draw [ultra thin, grey!30] (0,0) grid (2.5,2.5);
+		\draw [->] (0, 0) --  (2.5, 0) node[right]{x} ;
+		\draw [->] (0, 0) --  (0, 2.5) node[above]{y} ;
+		
+		% Scale
+		\foreach \x in {0,...,2}
+		\draw (\x, -0.1) -- (\x, +0.1) node[below=2mm ]{\x};
+		
+		% Scattering data	
+		\draw [line width = 2pt] (0,0.144) -- (1, 0.144);
+		\draw [line width = 2pt] (1,0.976) -- (2, 0.976);
+		\draw 
+		(0,0) node[]{$\times$}
+		(0, 0.14) node[]{$\bullet$}
+		(1, 0.14) node[]{$\times$}
+		(1, 0.97) node[]{$\bullet$}
+		(2, 0.97) node[]{$\times$}
+		(2, 2)  node[]{$\bullet$}
+		;
+		\end{tikzpicture}
+		\end{lstlisting}
+	\end{sol}
+\pagebreak
+	\section*{Problem 5: WMS 3.8}
+	\emph{A single cell can either die, with a probability of 0.10, or split into two, with a probability of 0.90, producing a newer generation of cells in the process. Each cell in the newer generation also dies or splits with the same probability as the initial cell. Find the probability distribution for the number of cells in the next generation, as well as the cumulative distribution function.}
+	\begin{sol}
+		Notice that the number of cells can never be odd as for each surviving cell, two more will result by cell division.  Thus, we let $t$ be the number of cells in each generation. Let $D=$``Cell dies" and $S=$``Cell splits". Thus:
+		\begin{align*}
+			P(X=0) &= P\big(D\cup (S \cap (D\cap D ))\big) \\
+			&= (0.1) + (0.9) \big( (0.1)(0.1) \big) \\
+			&= 0.109\\
+			&\\
+			P(X=4) &= P \big( S \cap (S \cap S)\big)\\
+			&= (0.9)\big( (0.9)(0.9) \big) \\
+			&= 0.729 \\
+			&\\
+			P(X=2) &= P (\Omega) - P(X=0) - P(X=4) \\
+			&= 1 - 0.109 - 0.729\\
+			&= 0.162
+		\end{align*}
+		We have the following table
+		\begin{table}[h]
+			\begin{tabular}{|c|c|c|c|}
+				\hline
+				$t$	&	0	&	2	&	4 \\ \hline
+				$P_X(t)$ & 0.109 & 0.162 & 0.729 \\ \hline 
+			\end{tabular}
+		\end{table}
+		Thus, the \emph{cdf} of this distribution is
+		\begin{figure}[h]
+			\begin{subfigure}{0.46\textwidth}
+				$$F_X (t) =  \begin{cases}
+				0 & t \in (-\infty, 0) \\
+				0.109 & u \in [0, 2) \\
+				0. 271 & u \in [2, 4) \\
+				1 & u \in [4, + \infty)
+				\end{cases}$$
+			\end{subfigure}
+			\hfill
+			\begin{subfigure}{0.46\textwidth}
+				\begin{center}
+					\begin{tikzpicture}
+					\draw [ultra thin, grey!30] (0,0) grid (2.5,2.5);
+					\draw [->] (0, 0) --  (2.5, 0) node[right]{x} ;
+					\draw [->] (0, 0) --  (0, 2.5) node[above]{y} ;
+					\foreach \x in {0,...,2}
+					\draw (\x, -0.1) -- (\x, +0.1);
+					\draw 
+					(0, 0) node [below=2mm]{0}
+					(1, 0) node[below=2mm]{2}
+					(2, 0) node [below=2mm]{4}
+					;
+					\foreach \y in { 0.218, 0.542, 2}
+					\draw (-0.1, \y) -- (0.1, \y);
+					\draw 
+					(0, 0.218) node [left=2mm]{0.109}
+					(0, 0.542) node[left=2mm]{0.271}
+					(0, 2) node [left=2mm]{1}
+					;
+					\draw [line width = 2pt] (0,0.218) -- (1, 0.218);
+					\draw [line width = 2pt] (1,0.542) -- (2, 0.542);
+					\draw 
+					(0,0) node[]{$\times$}
+					(0, 0.212) node[]{$\bullet$}
+					(1, 0.212) node[]{$\times$}
+					(1, 0.54) node[]{$\bullet$}
+					(2, 0.54) node[]{$\times$}
+					(2, 2)  node[]{$\bullet$}
+					;
+					\end{tikzpicture}
+				\end{center}
+			\end{subfigure}
+		\end{figure}
+	\pagebreak
+	
+		Sample code for graph (using \texttt{tikz}):
+		\begin{lstlisting}[language=tex]
+		\begin{tikzpicture}
+			\draw [ultra thin, grey!30] (0,0) grid (2.5,2.5);
+			\draw [->] (0, 0) --  (2.5, 0) node[right]{x} ;
+			\draw [->] (0, 0) --  (0, 2.5) node[above]{y} ;
+			\foreach \x in {0,...,2}
+				\draw (\x, -0.1) -- (\x, +0.1);
+			\draw 
+				(0, 0) node [below=2mm]{0}
+				(1, 0) node[below=2mm]{2}
+				(2, 0) node [below=2mm]{4}
+			;
+			\foreach \y in { 0.218, 0.542, 2}
+				\draw (-0.1, \y) -- (0.1, \y);
+			\draw 
+				(0, 0.218) node [left=2mm]{0.109}
+				(0, 0.542) node[left=2mm]{0.271}
+				(0, 2) node [left=2mm]{1}
+			;
+			\draw [line width = 2pt] (0,0.218) -- (1, 0.218);
+			\draw [line width = 2pt] (1,0.542) -- (2, 0.542);
+			\draw 
+				(0,0) node[]{$\times$}
+				(0, 0.212) node[]{$\bullet$}
+				(1, 0.212) node[]{$\times$}
+				(1, 0.54) node[]{$\bullet$}
+				(2, 0.54) node[]{$\times$}
+				(2, 2)  node[]{$\bullet$}
+			;
+		\end{tikzpicture}
+		\end{lstlisting}
+	\end{sol}
+	
+\pagebreak
+
+\section*{Problem 6: WMS 3.48}
+	\emph{A missile protection system consists of $n$ radar sets operating independently, each with a probability of 0.90 of detecting a missile entering a zone that is covered by all the units.
+	\begin{enumerate}[$\quad \quad$ (a)]
+		\item If $n=5$ and a missile enters the zone, what is the probability that exactly four sets detect the missile? At least one set?
+		\item  How large must $n$ be if we require that the probability of detecting a missile that enters the zone be 0.999?
+	\end{enumerate}
+}
+	\begin{sol}
+		\begin{enumerate}[$\quad \quad$ (a)]
+			\item If $n=5$, we first want the probability that exactly four sets detect the missile. We notice that the distribution $X$ of number of sets that detect the missile is of binomial form:
+			$$ X \sim \text{Bin}(k=5, p=0.90)$$
+		 	Therefore
+		 	\begin{align*}
+		 		P (X=4) &= C_4^5 (0.90)^4 (1-0.90)^{5-4} \\
+		 		&= \left( \frac{5!}{4! (1!)} \right) (0.9)^4 (0.1)^1 \\
+		 		&= 5 \times 0.6561 \times 0.1 \\
+		 		&= 0.3281
+		 	\end{align*}
+		 	At least 1 radar set detects a missile:
+		 	\begin{align*}
+		 		P (X\geq 1) &= 1 - P(X = 0) \\
+		 		&= 1 - \big( C_0^5 (0.90)^0 (1-0.9)^{5-0} \big)  \\
+		 		&= 1 - \bigg( \frac{5!}{0! (5!)} (1) (0.1)^{5} \bigg) \\
+		 		&= 1 - (0.00001) \\
+		 		&= 0.99999
+		 	\end{align*}
+			\item We may evaluate the probability that at least 1 out of $n$ sets detects a missile using the complement and multiplication rule of probability, derived above:
+			$$ P(X \geq 1) =  1 - P (X = 0) = 1 - (0.1)^n$$
+			Thus, we may now solve for $n$ considering that $P(X=n) = 0.999$:
+			\begin{align*}
+				0.999 &= 1- (0.1)^n\\
+				\therefore 0.001 &= (0.1)^n\\
+				\therefore \ln(0.001) &= n \ln(0.1) \\
+				\therefore n &= \frac{\ln(0.001)}{\ln(0.1)}
+			\end{align*}
+			$$\therefore n = 3$$
+		\end{enumerate}
+	\end{sol}
+	\section*{Problem 7: WMS 3.60}
+	\emph{A particular concentration of a chemical found in polluted water has been found to be lethal to 20\% of the fish that are exposed to the concentration for 24 hours. Twenty fish are placed in a tank containing this concentration of chemical in the water.
+	\begin{enumerate}[$\quad\quad$(a)]
+		\item Find the probability that exactly 14 survive.
+		\item Find the probability that at least 10 survive.
+		\item  Find the probability that at most 16 survive. 
+		\item Find the mean (expected value) and variance of the number that survive.
+	\end{enumerate}
+	}
+	
+	
 \end{document}  
 
 	
